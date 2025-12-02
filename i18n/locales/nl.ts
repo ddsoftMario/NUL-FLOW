@@ -118,7 +118,9 @@ export default {
     "analyticsDesc": "Anonieme gebruiksgegevens om de service te verbeteren",
     "crashReporting": "Crashrapportage",
     "crashReportingDesc": "Help ons bugs op te lossen en de stabiliteit te verbeteren",
-    "dataSecure": "Je wellness-gegevens zijn veilig en versleuteld."
+    "dataSecure": "Je wellness-gegevens zijn veilig en versleuteld.",
+    "about": "Over NUL flow",
+    "aboutDesc": "Deze app is gemaakt door 1013th met de hulp van DDSoft voor de neurodivergente gemeenschap."
   },
   "dataExport": {
     "title": "Gegevensexport",

@@ -118,7 +118,9 @@ export default {
     "analyticsDesc": "Datos de uso anónimos para mejorar el servicio",
     "crashReporting": "Informes de fallos",
     "crashReportingDesc": "Ayúdanos a corregir errores y mejorar la estabilidad",
-    "dataSecure": "Tus datos de bienestar están seguros y encriptados."
+    "dataSecure": "Tus datos de bienestar están seguros y encriptados.",
+    "about": "Acerca de NUL flow",
+    "aboutDesc": "Esta aplicación ha sido creada por 1013th con la ayuda de DDSoft para la comunidad neurodivergente."
   },
   "dataExport": {
     "title": "Exportar datos",

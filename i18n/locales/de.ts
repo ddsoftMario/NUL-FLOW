@@ -118,7 +118,9 @@ export default {
     "analyticsDesc": "Anonyme Nutzungsdaten zur Verbesserung des Dienstes",
     "crashReporting": "Absturzberichte",
     "crashReportingDesc": "Hilf uns, Fehler zu beheben und die Stabilität zu verbessern",
-    "dataSecure": "Deine Wellness-Daten sind sicher und verschlüsselt."
+    "dataSecure": "Deine Wellness-Daten sind sicher und verschlüsselt.",
+    "about": "Über NUL flow",
+    "aboutDesc": "Diese App wurde von 1013th mit Hilfe von DDSoft für die neurodivergente Gemeinschaft entwickelt."
   },
   "dataExport": {
     "title": "Datenexport",

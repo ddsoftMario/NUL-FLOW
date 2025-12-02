@@ -118,7 +118,9 @@ export default {
     "analyticsDesc": "Anonyme brugsdata for at forbedre tjenesten",
     "crashReporting": "Nedbrudsrapportering",
     "crashReportingDesc": "Hjælp os med at rette fejl og forbedre stabiliteten",
-    "dataSecure": "Dine wellness-data er sikre og krypterede."
+    "dataSecure": "Dine wellness-data er sikre og krypterede.",
+    "about": "Om NUL flow",
+    "aboutDesc": "Denne app er skabt af 1013th med hjælp fra DDSoft til det neurodivergente samfund derude."
   },
   "dataExport": {
     "title": "Dataeksport",

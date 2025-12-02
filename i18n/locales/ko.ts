@@ -118,7 +118,9 @@ export default {
     "analyticsDesc": "서비스 개선을 위한 익명 사용 데이터",
     "crashReporting": "충돌 보고",
     "crashReportingDesc": "버그 수정 및 안정성 향상에 도움",
-    "dataSecure": "당신의 웰빙 데이터는 안전하게 암호화됩니다."
+    "dataSecure": "당신의 웰빙 데이터는 안전하게 암호화됩니다.",
+    "about": "NUL flow 정보",
+    "aboutDesc": "이 앱은 1013th가 DDSoft의 도움을 받아 신경 다양성 커뮤니티를 위해 만들었습니다."
   },
   "dataExport": {
     "title": "데이터 내보내기",
