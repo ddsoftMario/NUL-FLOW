@@ -12,7 +12,9 @@ export default {
     "shareApp": "分享应用"
   },
   "share": {
-    "text": "快来看看 NUL flow，一款很棒的应用，可以用来追踪你的健康状况。"
+    "text": "快来看看 NUL flow，一款很棒的应用，可以用来追踪你的健康状况。",
+    "messageTemplate": "我的 NUL Flow 更新：\n🪣 负荷：{{bucket}}%\n🔋 能量：{{battery}}%{{moods}}{{notes}}",
+    "emailSubject": "我的 NUL Flow 更新"
   },
   "home": {
     "subtitle": "一种用于神经连接的通用语言。",
@@ -82,7 +84,11 @@ export default {
     "searchPlaceholder": "按姓名搜索...",
     "noContacts": "你没有允许请求的联系人。请让他们在你的设置中启用“可以请求我的状态”。",
     "sendRequest": "发送请求",
-    "requestSent": "请求已发送！"
+    "requestSent": "请求已发送！",
+    "noContactInfo": "无电话/邮箱",
+    "smsTemplate": "嘿 {{name}}，我来问候一下。你能和我分享你的 NUL flow 状态吗？",
+    "emailSubject": "NUL Flow 请求",
+    "emailBody": "嘿 {{name}}，\n\n希望你一切都好。我通过 NUL Flow 来问候一下。\n你能和我分享你当前的状态（水桶/电池）吗？\n\n祝好，"
   },
   "contactGroups": {
     "Family": "家人",
@@ -200,5 +206,24 @@ export default {
     "batteryTitle": "电池",
     "batteryDesc": "代表您的能量水平。一个低电量的电池意味着您筋疲力尽。",
     "closeButton": "开始使用"
+  },
+  "profileSetup": {
+    "title": "你是谁？",
+    "subtitle": "让我们设置你的个人资料，这样你的朋友就知道谁在分享他们的状态。",
+    "nameLabel": "你的名字",
+    "namePlaceholder": "张三",
+    "emailLabel": "电子邮件地址",
+    "phoneLabel": "电话号码",
+    "submitButton": "创建个人资料",
+    "nextStep": "下一步：添加联系人",
+    "contactsTitle": "建立你的圈子",
+    "contactsSubtitle": "从你的设备导入信任的联系人以分享你的状态。",
+    "importDescription": "我们可以快速从你的通讯录导入姓名和号码。",
+    "importButton": "从设备导入",
+    "importNotSupported": "此设备/浏览器不支持联系人导入。",
+    "manualEntryNote": "此设备不支持自动导入。你可以稍后通过“连接圈”标签手动添加联系人。",
+    "contactsSelected": "已选择 {{count}} 个联系人！",
+    "finishWithContacts": "完成并保存联系人",
+    "skipContacts": "暂时跳过"
   }
 };

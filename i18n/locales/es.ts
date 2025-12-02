@@ -12,7 +12,9 @@ export default {
     "shareApp": "Compartir App"
   },
   "share": {
-    "text": "Echa un vistazo a NUL flow, una gran aplicación para seguir tu bienestar."
+    "text": "Echa un vistazo a NUL flow, una gran aplicación para seguir tu bienestar.",
+    "messageTemplate": "Mi actualización de NUL Flow:\n🪣 Carga: {{bucket}}%\n🔋 Energía: {{battery}}%{{moods}}{{notes}}",
+    "emailSubject": "Mi actualización de NUL Flow"
   },
   "home": {
     "subtitle": "Un lenguaje universal para la neuro-conexión.",
@@ -82,7 +84,11 @@ export default {
     "searchPlaceholder": "Buscar por nombre...",
     "noContacts": "No tienes contactos que permitan solicitudes. Pídeles que activen 'Puede solicitar mi estado' en su configuración para ti.",
     "sendRequest": "Enviar solicitud",
-    "requestSent": "¡Solicitud enviada!"
+    "requestSent": "¡Solicitud enviada!",
+    "noContactInfo": "Sin teléfono/email",
+    "smsTemplate": "Hola {{name}}, me estoy registrando. ¿Podrías compartir tu estado de NUL flow conmigo?",
+    "emailSubject": "Solicitud de NUL Flow",
+    "emailBody": "Hola {{name}},\n\nEspero que estés bien. Me estoy registrando a través de NUL Flow.\n¿Podrías compartir tu estado actual (Cubo/Batería) conmigo?\n\nSaludos,"
   },
   "contactGroups": {
     "Family": "Familia",
@@ -200,5 +206,24 @@ export default {
     "batteryTitle": "La Batería",
     "batteryDesc": "Representa tu nivel de energía. Una batería baja significa que estás agotado.",
     "closeButton": "Comenzar"
+  },
+  "profileSetup": {
+    "title": "¿Quién eres?",
+    "subtitle": "Configuremos tu perfil para que tus amigos sepan quién comparte su flujo.",
+    "nameLabel": "Tu Nombre",
+    "namePlaceholder": "Juan Pérez",
+    "emailLabel": "Dirección de Correo Electrónico",
+    "phoneLabel": "Número de Teléfono",
+    "submitButton": "Crear Perfil",
+    "nextStep": "Siguiente: Añadir Contactos",
+    "contactsTitle": "Crea Tu Círculo",
+    "contactsSubtitle": "Importa contactos de confianza desde tu dispositivo para compartir tu flujo.",
+    "importDescription": "Podemos importar rápidamente nombres y números de tu libreta de direcciones.",
+    "importButton": "Importar desde el dispositivo",
+    "importNotSupported": "La importación de contactos no es compatible con este dispositivo/navegador.",
+    "manualEntryNote": "Este dispositivo no admite la importación automática. Puedes añadir contactos manualmente más tarde a través de la pestaña 'Círculo de Conexión'.",
+    "contactsSelected": "¡{{count}} contactos seleccionados!",
+    "finishWithContacts": "Terminar y Guardar Contactos",
+    "skipContacts": "Omitir por ahora"
   }
 };

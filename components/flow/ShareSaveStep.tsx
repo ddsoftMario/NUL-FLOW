@@ -26,9 +26,16 @@ const ShareSaveStep: React.FC<ShareSaveStepProps> = ({ data, onUpdate, onSave, o
   };
 
   const getShareText = () => {
-    const moodsText = data.moods.length > 0 ? `Mood: ${data.moods.join(', ')}` : '';
-    const notesText = data.notes ? `Note: ${data.notes}` : '';
-    return `My NUL Flow Update:\n🪣 Load: ${data.bucketLevel}%\n🔋 Energy: ${data.batteryLevel}%\n${moodsText}\n${notesText}`;
+    // Translate moods for the message
+    const translatedMoods = data.moods.map(m => t(`moods.${m}`, { defaultValue: m })).join(', ');
+    
+    // Construct the message using translations
+    return t('share.messageTemplate', {
+        bucket: data.bucketLevel,
+        battery: data.batteryLevel,
+        moods: translatedMoods ? `\nMood: ${translatedMoods}` : '',
+        notes: data.notes ? `\nNote: ${data.notes}` : ''
+    });
   };
 
   const handleNativeShare = async () => {
@@ -54,7 +61,7 @@ const ShareSaveStep: React.FC<ShareSaveStepProps> = ({ data, onUpdate, onSave, o
 
   const handleSendEmail = (contact: Contact) => {
     if (!contact.email) return;
-    const subject = "My NUL Flow Update";
+    const subject = t('share.emailSubject', { defaultValue: 'My NUL Flow Update'});
     const url = `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(getShareText())}`;
     window.location.href = url;
   };

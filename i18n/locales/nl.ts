@@ -12,7 +12,9 @@ export default {
     "shareApp": "Deel App"
   },
   "share": {
-    "text": "Bekijk NUL flow, een geweldige app om je welzijn bij te houden."
+    "text": "Bekijk NUL flow, een geweldige app om je welzijn bij te houden.",
+    "messageTemplate": "Mijn NUL Flow Update:\n🪣 Last: {{bucket}}%\n🔋 Energie: {{battery}}%{{moods}}{{notes}}",
+    "emailSubject": "Mijn NUL Flow Update"
   },
   "home": {
     "subtitle": "Een universele taal for neuro-verbinding.",
@@ -78,7 +80,7 @@ export default {
   },
   "requestFlow": {
     "title": "NUL Flow aanvragen",
-    "description": "Selecteer contacten van wie je een wellness-update wilt aanvragen.",
+    "description": "Selecteer contacten van wie je een wellness-update aanvragen.",
     "searchPlaceholder": "Zoeken op naam...",
     "noContacts": "Je hebt geen contacten die aanvragen toestaan. Vraag hen om 'Kan mijn toestand opvragen' in hun instellingen voor jou in te schakelen.",
     "sendRequest": "Verzoek sturen",

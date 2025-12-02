@@ -12,7 +12,9 @@ export default {
     "shareApp": "Share App"
   },
   "share": {
-    "text": "Check out NUL flow, a great app for tracking your wellness."
+    "text": "Check out NUL flow, a great app for tracking your wellness.",
+    "messageTemplate": "My NUL Flow Update:\n🪣 Load: {{bucket}}%\n🔋 Energy: {{battery}}%{{moods}}{{notes}}",
+    "emailSubject": "My NUL Flow Update"
   },
   "home": {
     "subtitle": "A universal language for neuro-connection.",
@@ -91,7 +93,7 @@ export default {
   "contactGroups": {
     "Family": "Family",
     "Friend": "Friend",
-    "Therapist": "Therapist",
+    "Therapist": "Therist",
     "Partner": "Partner"
   },
   "settings": {

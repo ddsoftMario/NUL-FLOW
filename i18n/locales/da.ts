@@ -12,7 +12,9 @@ export default {
     "shareApp": "Del App"
   },
   "share": {
-    "text": "Tjek NUL flow, en fantastisk app til at spore dit velvære."
+    "text": "Tjek NUL flow, en fantastisk app til at spore dit velvære.",
+    "messageTemplate": "Min NUL Flow opdatering:\n🪣 Belastning: {{bucket}}%\n🔋 Energi: {{battery}}%{{moods}}{{notes}}",
+    "emailSubject": "Min NUL Flow Opdatering"
   },
   "home": {
     "subtitle": "Et universelt sprog for neuro-forbindelse.",
@@ -82,7 +84,11 @@ export default {
     "searchPlaceholder": "Søg efter navn...",
     "noContacts": "Du har ingen kontakter, der tillader anmodninger. Bed dem om at aktivere 'Kan anmode om min tilstand' i deres indstillinger for dig.",
     "sendRequest": "Send anmodning",
-    "requestSent": "Anmodning sendt!"
+    "requestSent": "Anmodning sendt!",
+    "noContactInfo": "Ingen tlf./email",
+    "smsTemplate": "Hej {{name}}, jeg tjekker lige ind. Vil du dele din NUL flow-status med mig?",
+    "emailSubject": "NUL Flow Anmodning",
+    "emailBody": "Hej {{name}},\n\nJeg håber, du har det godt. Jeg tjekker ind via NUL Flow.\nVil du dele din nuværende status (Spand/Batteri) med mig?\n\nDe bedste hilsner,"
   },
   "contactGroups": {
     "Family": "Familie",
@@ -200,5 +206,24 @@ export default {
     "batteryTitle": "Batteriet",
     "batteryDesc": "Repræsenterer dit energiniveau. Et lavt batteri betyder, at du er drænet.",
     "closeButton": "Kom i gang"
+  },
+  "profileSetup": {
+    "title": "Hvem er du?",
+    "subtitle": "Lad os opsætte din profil, så dine venner ved, hvem der deler deres flow.",
+    "nameLabel": "Dit Navn",
+    "namePlaceholder": "Jane Doe",
+    "emailLabel": "E-mailadresse",
+    "phoneLabel": "Telefonnummer",
+    "submitButton": "Opret Profil",
+    "nextStep": "Næste: Tilføj Kontakter",
+    "contactsTitle": "Byg Din Cirkel",
+    "contactsSubtitle": "Importer betroede kontakter fra din enhed for at dele dit flow med.",
+    "importDescription": "Vi kan hurtigt importere navne og numre fra din adressebog.",
+    "importButton": "Importer fra Enhed",
+    "importNotSupported": "Kontaktimport understøttes ikke på denne enhed/browser.",
+    "manualEntryNote": "Denne enhed understøtter ikke automatisk import. Du kan tilføje kontakter manuelt senere via fanen 'Forbindelsescirkel'.",
+    "contactsSelected": "{{count}} kontakter valgt!",
+    "finishWithContacts": "Afslut & Gem Kontakter",
+    "skipContacts": "Spring over nu"
   }
 };
