@@ -82,7 +82,11 @@ export default {
     "searchPlaceholder": "Zoeken op naam...",
     "noContacts": "Je hebt geen contacten die aanvragen toestaan. Vraag hen om 'Kan mijn toestand opvragen' in hun instellingen voor jou in te schakelen.",
     "sendRequest": "Verzoek sturen",
-    "requestSent": "Verzoek verzonden!"
+    "requestSent": "Verzoek verzonden!",
+    "noContactInfo": "Geen tel/email",
+    "smsTemplate": "Hoi {{name}}, hoe gaat het? Kun je je NUL flow status met mij delen?",
+    "emailSubject": "NUL Flow Verzoek",
+    "emailBody": "Hoi {{name}},\n\nIk hoop dat alles goed gaat. Ik check even in via NUL Flow.\nKun je je huidige status (Emmer/Batterij) met mij delen?\n\nGroetjes,"
   },
   "contactGroups": {
     "Family": "Familie",
@@ -165,7 +169,7 @@ export default {
       "searchPlaceholder": "Zoek contacten...",
       "addMoreContacts": "Meer contacten toevoegen",
       "sendToContacts": "Verzenden naar {{count}} contact(en)",
-      "saveForMyself": "Voor mezelf opslaan"
+      "saveForMyself": "Opslaan / Voltooien"
     },
     "buttons": {
       "next": "Volgende stap",
@@ -208,6 +212,16 @@ export default {
     "namePlaceholder": "Jantje de Vries",
     "emailLabel": "E-mailadres",
     "phoneLabel": "Telefoonnummer",
-    "submitButton": "Profiel Aanmaken"
+    "submitButton": "Profiel Aanmaken",
+    "nextStep": "Volgende: Contacten",
+    "contactsTitle": "Bouw je Cirkel",
+    "contactsSubtitle": "Importeer vertrouwde contacten van je apparaat.",
+    "importDescription": "We kunnen snel namen en nummers uit je adresboek importeren.",
+    "importButton": "Importeren van apparaat",
+    "importNotSupported": "Contacten importeren wordt niet ondersteund op dit apparaat/browser.",
+    "manualEntryNote": "Dit apparaat ondersteunt geen automatische import. Je kunt later handmatig contacten toevoegen via 'Verbindingscirkel'.",
+    "contactsSelected": "{{count}} contacten geselecteerd!",
+    "finishWithContacts": "Voltooien & Opslaan",
+    "skipContacts": "Nu overslaan"
   }
 };

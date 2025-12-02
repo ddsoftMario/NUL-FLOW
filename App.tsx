@@ -70,9 +70,9 @@ const App: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>(() => {
       try {
           const savedContacts = localStorage.getItem('nul-flow-contacts');
-          return savedContacts ? JSON.parse(savedContacts) : MOCK_CONTACTS;
+          return savedContacts ? JSON.parse(savedContacts) : []; // Default to empty list for new users
       } catch (error) { console.error("Failed to load contacts from localStorage", error); }
-      return MOCK_CONTACTS;
+      return [];
   });
 
   // State for received messages (Inbox)
@@ -87,25 +87,27 @@ const App: React.FC = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
 
   // DEMO SIMULATION: Receive a message from a contact after 3 seconds
+  // Only runs if we actually have contacts
   useEffect(() => {
     // Only simulate if user is logged in
-    if (userProfile && inbox.length === 0) {
+    if (userProfile && inbox.length === 0 && contacts.length > 0) {
       const timer = setTimeout(() => {
-        const mario = contacts.find(c => c.name === 'Mario') || contacts[2];
-        if (mario) {
+        // Pick a random contact or the first one
+        const sender = contacts[Math.floor(Math.random() * contacts.length)];
+        if (sender) {
           const newMsg: InboxItem = {
             id: `inbox_${Date.now()}`,
             timestamp: new Date(),
             bucketLevel: 80,
             batteryLevel: 45,
             moods: ['stressed', 'focused'],
-            senderId: mario.id,
+            senderId: sender.id,
             isRead: false,
             notes: "Big deadline coming up. Heads down."
           };
           setInbox([newMsg]);
         }
-      }, 3000);
+      }, 5000); // Slightly longer delay so they can explore first
       return () => clearTimeout(timer);
     }
   }, [inbox.length, contacts, userProfile]);
@@ -231,9 +233,15 @@ const App: React.FC = () => {
     setIsSendingFlow(false);
   };
 
-  const handleProfileComplete = (profile: UserProfile) => {
+  const handleProfileComplete = (profile: UserProfile, initialContacts: Contact[]) => {
     setUserProfile(profile);
     localStorage.setItem('nul-flow-user', JSON.stringify(profile));
+    
+    // Add imported contacts
+    if (initialContacts && initialContacts.length > 0) {
+      setContacts(initialContacts);
+    }
+    
     // Trigger onboarding after profile setup
     setTimeout(() => {
         setShowOnboarding(true);
