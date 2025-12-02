@@ -12,7 +12,9 @@ export default {
     "shareApp": "App teilen"
   },
   "share": {
-    "text": "Schau dir NUL flow an, eine tolle App, um dein Wohlbefinden zu verfolgen."
+    "text": "Schau dir NUL flow an, eine tolle App, um dein Wohlbefinden zu verfolgen.",
+    "messageTemplate": "Mein NUL Flow Update:\n🪣 Belastung: {{bucket}}%\n🔋 Energie: {{battery}}%{{moods}}{{notes}}",
+    "emailSubject": "Mein NUL Flow Update"
   },
   "home": {
     "subtitle": "Eine universelle Sprache für die Neuro-Verbindung.",
@@ -82,7 +84,11 @@ export default {
     "searchPlaceholder": "Nach Name suchen...",
     "noContacts": "Sie haben keine Kontakte, die Anfragen zulassen. Bitten Sie sie, 'Kann meinen Zustand anfordern' in ihren Einstellungen für Sie zu aktivieren.",
     "sendRequest": "Anfrage senden",
-    "requestSent": "Anfrage gesendet!"
+    "requestSent": "Anfrage gesendet!",
+    "noContactInfo": "Keine Tel/E-Mail",
+    "smsTemplate": "Hallo {{name}}, ich melde mich mal. Könntest du deinen NUL Flow Status mit mir teilen?",
+    "emailSubject": "NUL Flow Anfrage",
+    "emailBody": "Hallo {{name}},\n\nIch hoffe, es geht dir gut. Ich melde mich über NUL Flow.\nKönntest du deinen aktuellen Status (Eimer/Akku) mit mir teilen?\n\nBeste Grüße,"
   },
   "contactGroups": {
     "Family": "Familie",
@@ -200,5 +206,24 @@ export default {
     "batteryTitle": "Die Batterie",
     "batteryDesc": "Stellt Ihr Energieniveau dar. Eine leere Batterie bedeutet, dass Sie erschöpft sind.",
     "closeButton": "Los geht's"
+  },
+  "profileSetup": {
+    "title": "Wer bist du?",
+    "subtitle": "Lass uns dein Profil einrichten, damit deine Freunde wissen, wer seinen Flow teilt.",
+    "nameLabel": "Dein Name",
+    "namePlaceholder": "Max Mustermann",
+    "emailLabel": "E-Mail-Adresse",
+    "phoneLabel": "Telefonnummer",
+    "submitButton": "Profil erstellen",
+    "nextStep": "Weiter: Kontakte hinzufügen",
+    "contactsTitle": "Baue deinen Kreis auf",
+    "contactsSubtitle": "Importiere vertrauenswürdige Kontakte von deinem Gerät, um deinen Flow zu teilen.",
+    "importDescription": "Wir können schnell Namen und Nummern aus deinem Adressbuch importieren.",
+    "importButton": "Vom Gerät importieren",
+    "importNotSupported": "Kontaktimport wird auf diesem Gerät/Browser nicht unterstützt.",
+    "manualEntryNote": "Dieses Gerät unterstützt keinen automatischen Import. Du kannst Kontakte später manuell über den Tab 'Verbindungskreis' hinzufügen.",
+    "contactsSelected": "{{count}} Kontakte ausgewählt!",
+    "finishWithContacts": "Fertigstellen & Kontakte speichern",
+    "skipContacts": "Jetzt überspringen"
   }
 };

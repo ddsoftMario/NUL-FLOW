@@ -12,7 +12,9 @@ export default {
     "shareApp": "Compartilhar App"
   },
   "share": {
-    "text": "Confira o NUL flow, um ótimo aplicativo para acompanhar seu bem-estar."
+    "text": "Confira o NUL flow, um ótimo aplicativo para acompanhar seu bem-estar.",
+    "messageTemplate": "Minha atualização do NUL Flow:\n🪣 Carga: {{bucket}}%\n🔋 Energia: {{battery}}%{{moods}}{{notes}}",
+    "emailSubject": "Minha atualização do NUL Flow"
   },
   "home": {
     "subtitle": "Uma linguagem universal para a neuro-conexão.",
@@ -69,7 +71,7 @@ export default {
     "save": "Salvar",
     "cancel": "Cancelar",
     "confirmDeleteTitle": "Confirmar Exclusão",
-    "confirmDeleteMessage": "Esta ação не pode ser desfeita. Tem certeza de que deseja excluir permanentemente este contato da sua rede?",
+    "confirmDeleteMessage": "Esta ação não pode ser desfeita. Tem certeza de que deseja excluir permanentemente este contato da sua rede?",
     "delete": "Excluir",
     "newContactName": "Novo Contato",
     "enterGroupName": "Digite um nome para o novo grupo:",
@@ -80,9 +82,13 @@ export default {
     "title": "Solicitar NUL Flow",
     "description": "Selecione os contatos para os quais você gostaria de solicitar uma atualização de bem-estar.",
     "searchPlaceholder": "Pesquisar por nome...",
-    "noContacts": "Você не tem contatos que permitem solicitações. Peça a eles para habilitar 'Pode solicitar meu estado' em suas configurações para você.",
+    "noContacts": "Você não tem contatos que permitem solicitações. Peça a eles para habilitar 'Pode solicitar meu estado' em suas configurações para você.",
     "sendRequest": "Enviar Solicitação",
-    "requestSent": "Solicitação Enviada!"
+    "requestSent": "Solicitação Enviada!",
+    "noContactInfo": "Sem tel/email",
+    "smsTemplate": "Ei {{name}}, só conferindo. Você poderia compartilhar seu status do NUL flow comigo?",
+    "emailSubject": "Solicitação do NUL Flow",
+    "emailBody": "Ei {{name}},\n\nEspero que você esteja bem. Estou conferindo via NUL Flow.\nVocê poderia compartilhar seu status atual (Balde/Bateria) comigo?\n\nAbs,"
   },
   "contactGroups": {
     "Family": "Família",
@@ -200,5 +206,24 @@ export default {
     "batteryTitle": "A Bateria",
     "batteryDesc": "Representa seu nível de energia. Uma bateria baixa significa que você está esgotado.",
     "closeButton": "Começar"
+  },
+  "profileSetup": {
+    "title": "Quem é você?",
+    "subtitle": "Vamos configurar seu perfil para que seus amigos saibam quem está compartilhando o flow.",
+    "nameLabel": "Seu Nome",
+    "namePlaceholder": "João Silva",
+    "emailLabel": "Endereço de E-mail",
+    "phoneLabel": "Número de Telefone",
+    "submitButton": "Criar Perfil",
+    "nextStep": "Próximo: Adicionar Contatos",
+    "contactsTitle": "Construa Seu Círculo",
+    "contactsSubtitle": "Importe contatos de confiança do seu dispositivo para compartilhar seu flow.",
+    "importDescription": "Podemos importar rapidamente nomes e números da sua agenda.",
+    "importButton": "Importar do Dispositivo",
+    "importNotSupported": "A importação de contatos não é suportada neste dispositivo/navegador.",
+    "manualEntryNote": "Este dispositivo não suporta importação automática. Você pode adicionar contatos manualmente mais tarde através da aba 'Círculo de Conexão'.",
+    "contactsSelected": "{{count}} contatos selecionados!",
+    "finishWithContacts": "Finalizar e Salvar Contatos",
+    "skipContacts": "Pular por enquanto"
   }
 };

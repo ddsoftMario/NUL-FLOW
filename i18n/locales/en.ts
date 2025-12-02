@@ -12,7 +12,9 @@ export default {
     "shareApp": "Share App"
   },
   "share": {
-    "text": "Check out NUL flow, a great app for tracking your wellness."
+    "text": "Check out NUL flow, a great app for tracking your wellness.",
+    "messageTemplate": "My NUL Flow Update:\n🪣 Load: {{bucket}}%\n🔋 Energy: {{battery}}%{{moods}}{{notes}}",
+    "emailSubject": "My NUL Flow Update"
   },
   "home": {
     "subtitle": "A universal language for neuro-connection.",
@@ -82,12 +84,16 @@ export default {
     "searchPlaceholder": "Search by name...",
     "noContacts": "You have no contacts that allow requests. Ask them to enable 'Can request my state' in their settings for you.",
     "sendRequest": "Send Request",
-    "requestSent": "Request Sent!"
+    "requestSent": "Request Sent!",
+    "noContactInfo": "No phone/email",
+    "smsTemplate": "Hey {{name}}, I'm checking in. Could you share your NUL flow status with me?",
+    "emailSubject": "NUL Flow Request",
+    "emailBody": "Hey {{name}},\n\nI hope you're doing well. I'm checking in via NUL Flow.\nCould you share your current status (Bucket/Battery) with me?\n\nBest,"
   },
   "contactGroups": {
     "Family": "Family",
     "Friend": "Friend",
-    "Therapist": "Therapist",
+    "Therapist": "Therist",
     "Partner": "Partner"
   },
   "settings": {
@@ -165,7 +171,7 @@ export default {
       "searchPlaceholder": "Search contacts...",
       "addMoreContacts": "Add More Contacts",
       "sendToContacts": "Send to {{count}} Contact(s)",
-      "saveForMyself": "Save for Myself"
+      "saveForMyself": "Save / Finish"
     },
     "buttons": {
       "next": "Next Step",
@@ -208,6 +214,16 @@ export default {
     "namePlaceholder": "Jane Doe",
     "emailLabel": "Email Address",
     "phoneLabel": "Phone Number",
-    "submitButton": "Create Profile"
+    "submitButton": "Create Profile",
+    "nextStep": "Next: Add Contacts",
+    "contactsTitle": "Build Your Circle",
+    "contactsSubtitle": "Import trusted contacts from your device to share your flow with.",
+    "importDescription": "We can quickly import names and numbers from your address book.",
+    "importButton": "Import from Device",
+    "importNotSupported": "Contact import is not supported on this device/browser.",
+    "manualEntryNote": "This device doesn't support automatic import. You can add contacts manually later via the 'Connection Circle' tab.",
+    "contactsSelected": "{{count}} contacts selected!",
+    "finishWithContacts": "Finish & Save Contacts",
+    "skipContacts": "Skip for Now"
   }
 };

@@ -12,7 +12,9 @@ export default {
     "shareApp": "앱 공유"
   },
   "share": {
-    "text": "당신의 웰빙을 추적하는 멋진 앱, NUL flow를 확인해보세요."
+    "text": "당신의 웰빙을 추적하는 멋진 앱, NUL flow를 확인해보세요.",
+    "messageTemplate": "나의 NUL Flow 업데이트:\n🪣 부하: {{bucket}}%\n🔋 에너지: {{battery}}%{{moods}}{{notes}}",
+    "emailSubject": "나의 NUL Flow 업데이트"
   },
   "home": {
     "subtitle": "신경 연결을 위한 보편적 언어.",
@@ -82,7 +84,11 @@ export default {
     "searchPlaceholder": "이름으로 검색...",
     "noContacts": "요청을 허용하는 연락처가 없습니다. 상대방에게 설정에서 '내 상태 요청 가능'을 활성화하도록 요청하세요.",
     "sendRequest": "요청 보내기",
-    "requestSent": "요청 보냄!"
+    "requestSent": "요청 보냄!",
+    "noContactInfo": "전화/이메일 없음",
+    "smsTemplate": "{{name}}님 안녕하세요, 잘 지내시나요? NUL flow 상태를 공유해 주실 수 있나요?",
+    "emailSubject": "NUL Flow 요청",
+    "emailBody": "{{name}}님 안녕하세요,\n\n잘 지내시길 바랍니다. NUL Flow를 통해 안부를 묻습니다.\n현재 상태(버킷/배터리)를 공유해 주실 수 있나요?\n\n감사합니다,"
   },
   "contactGroups": {
     "Family": "가족",
@@ -200,5 +206,24 @@ export default {
     "batteryTitle": "배터리",
     "batteryDesc": "에너지 수준을 나타냅니다. 배터리가 부족하면 지친 상태입니다.",
     "closeButton": "시작하기"
+  },
+  "profileSetup": {
+    "title": "누구신가요?",
+    "subtitle": "친구들이 누가 flow를 공유하는지 알 수 있도록 프로필을 설정해 봅시다.",
+    "nameLabel": "이름",
+    "namePlaceholder": "홍길동",
+    "emailLabel": "이메일 주소",
+    "phoneLabel": "전화번호",
+    "submitButton": "프로필 생성",
+    "nextStep": "다음: 연락처 추가",
+    "contactsTitle": "서클 구축",
+    "contactsSubtitle": "기기에서 신뢰할 수 있는 연락처를 가져와 flow를 공유하세요.",
+    "importDescription": "주소록에서 이름과 번호를 빠르게 가져올 수 있습니다.",
+    "importButton": "기기에서 가져오기",
+    "importNotSupported": "이 기기/브라우저에서는 연락처 가져오기를 지원하지 않습니다.",
+    "manualEntryNote": "이 기기는 자동 가져오기를 지원하지 않습니다. 나중에 '연결 서클' 탭을 통해 수동으로 연락처를 추가할 수 있습니다.",
+    "contactsSelected": "{{count}}개의 연락처가 선택되었습니다!",
+    "finishWithContacts": "완료 및 연락처 저장",
+    "skipContacts": "지금은 건너뛰기"
   }
 };
