@@ -1,4 +1,3 @@
-
 // Fix: Convert JSON object to a TypeScript module with a default export.
 export default {
   "nav": {
@@ -118,7 +117,9 @@ export default {
     "analyticsDesc": "用于改善服务的匿名使用数据",
     "crashReporting": "崩溃报告",
     "crashReportingDesc": "帮助我们修复错误并提高稳定性",
-    "dataSecure": "你的健康数据是安全加密的。"
+    "dataSecure": "你的健康数据是安全加密的。",
+    "about": "关于 NUL flow",
+    "aboutDesc": "由 1013th 创建，在 DDSoft 的帮助下为所有神经多样性社区发布 .."
   },
   "dataExport": {
     "title": "数据导出",

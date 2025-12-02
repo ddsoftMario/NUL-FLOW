@@ -41,11 +41,16 @@ const ShareSaveStep: React.FC<ShareSaveStepProps> = ({ data, onUpdate, onSave, o
   const handleNativeShare = async () => {
     if (navigator.share) {
         try {
-            await navigator.share({
+            const shareData: any = {
                 title: 'My NUL Flow',
                 text: getShareText(),
-                url: window.location.href
-            });
+            };
+            // Ensure we don't pass 'about:srcdoc' or other invalid URLs that cause "Invalid URL" errors
+            if (window.location.href && window.location.href.startsWith('http')) {
+                shareData.url = window.location.href;
+            }
+            
+            await navigator.share(shareData);
         } catch (err) {
             console.log("Share skipped or failed", err);
         }

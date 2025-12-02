@@ -1,4 +1,3 @@
-
 // Fix: Convert JSON object to a TypeScript module with a default export.
 export default {
   "nav": {
@@ -120,7 +119,7 @@ export default {
     "crashReportingDesc": "버그 수정 및 안정성 향상에 도움",
     "dataSecure": "당신의 웰빙 데이터는 안전하게 암호화됩니다.",
     "about": "NUL flow 정보",
-    "aboutDesc": "이 앱은 1013th가 DDSoft의 도움을 받아 신경 다양성 커뮤니티를 위해 만들었습니다."
+    "aboutDesc": "1013th에 의해 만들어졌으며, DDSoft의 도움으로 모든 신경다양성 커뮤니티를 위해 출판되었습니다 .."
   },
   "dataExport": {
     "title": "데이터 내보내기",

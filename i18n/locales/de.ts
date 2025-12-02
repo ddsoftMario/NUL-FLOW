@@ -1,4 +1,3 @@
-
 // Fix: Convert JSON object to a TypeScript module with a default export.
 export default {
   "nav": {
@@ -71,7 +70,7 @@ export default {
     "save": "Speichern",
     "cancel": "Abbrechen",
     "confirmDeleteTitle": "Löschen bestätigen",
-    "confirmDeleteMessage": "Diese Aktion kann не rückgängig gemacht werden. Sind Sie sicher, dass Sie diesen Kontakt dauerhaft aus Ihrem Netzwerk entfernen möchten?",
+    "confirmDeleteMessage": "Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie diesen Kontakt dauerhaft aus Ihrem Netzwerk entfernen möchten?",
     "delete": "Löschen",
     "newContactName": "Neuer Kontakt",
     "enterGroupName": "Geben Sie einen Namen für die neue Gruppe ein:",
@@ -120,7 +119,7 @@ export default {
     "crashReportingDesc": "Hilf uns, Fehler zu beheben und die Stabilität zu verbessern",
     "dataSecure": "Deine Wellness-Daten sind sicher und verschlüsselt.",
     "about": "Über NUL flow",
-    "aboutDesc": "Diese App wurde von 1013th mit Hilfe von DDSoft für die neurodivergente Gemeinschaft entwickelt."
+    "aboutDesc": "erstellt von 1013th, veröffentlicht mit Hilfe von DDSoft für die gesamte neurodivergente Gemeinschaft da draußen .."
   },
   "dataExport": {
     "title": "Datenexport",

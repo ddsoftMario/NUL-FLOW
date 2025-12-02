@@ -196,11 +196,15 @@ const App: React.FC = () => {
   
   const handleShareClick = () => {
     if (navigator.share) {
-        navigator.share({
+        const shareData: any = {
             title: 'NUL flow',
             text: t('share.text'),
-            url: window.location.href,
-        }).catch(console.error);
+        };
+        // Ensure we don't pass invalid URLs (like about:srcdoc in iframes)
+        if (window.location.href && window.location.href.startsWith('http')) {
+            shareData.url = window.location.href;
+        }
+        navigator.share(shareData).catch(console.error);
     }
   };
 

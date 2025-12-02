@@ -1,7 +1,3 @@
-
-
-
-
 // Fix: Convert JSON object to a TypeScript module with a default export.
 export default {
   "nav": {
@@ -123,7 +119,7 @@ export default {
     "crashReportingDesc": "Help us fix bugs and improve stability",
     "dataSecure": "Your wellness data is secure and encrypted.",
     "about": "About NUL flow",
-    "aboutDesc": "This app has been created by 1013th with the help of DDSoft for the neurodivergent community out there."
+    "aboutDesc": "created by 1013th, published with the help of DDSoft for the whole Neurodivergent Community out there .."
   },
   "dataExport": {
     "title": "Data Export",

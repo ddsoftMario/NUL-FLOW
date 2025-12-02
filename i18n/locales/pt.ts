@@ -1,4 +1,3 @@
-
 // Fix: Convert JSON object to a TypeScript module with a default export.
 export default {
   "nav": {
@@ -88,4 +87,144 @@ export default {
     "noContactInfo": "Sem tel/email",
     "smsTemplate": "Ei {{name}}, só conferindo. Você poderia compartilhar seu status do NUL flow comigo?",
     "emailSubject": "Solicitação do NUL Flow",
-    "emailBody": "Ei {{name}},\n\nEspero que você esteja bem. Estou conferindo via NUL
+    "emailBody": "Ei {{name}},\n\nEspero que você esteja bem. Estou conferindo via NUL Flow.\nPoderia compartilhar seu estado atual (Balde/Bateria) comigo?\n\nAtenciosamente,"
+  },
+  "contactGroups": {
+    "Family": "Família",
+    "Friend": "Amigo",
+    "Therapist": "Terapeuta",
+    "Partner": "Parceiro(a)"
+  },
+  "settings": {
+    "title": "Configurações",
+    "description": "Personalize sua experiência de bem-estar NUL.",
+    "appearance": "Aparência",
+    "darkMode": "Modo Escuro",
+    "darkModeDesc": "Alterne entre temas claro e escuro",
+    "notifications": "Notificações",
+    "bucketOverflow": "Alertas de Balde Cheio",
+    "bucketOverflowDesc": "Seja notificado quando seu balde estiver quase cheio",
+    "lowBattery": "Alertas de Bateria Baixa",
+    "lowBatteryDesc": "Seja notificado quando sua energia estiver acabando",
+    "dailyCheckin": "Lembretes de Check-in Diário",
+    "dailyCheckinDesc": "Lembretes gentis para registrar seu estado de bem-estar",
+    "weeklyReports": "Relatórios Semanais",
+    "weeklyReportsDesc": "Resumo de seus padrões de bem-estar",
+    "privacy": "Privacidade e Segurança",
+    "shareLocation": "Compartilhar Dados de Localização",
+    "shareLocationDesc": "Ajude a melhorar insights baseados em localização",
+    "analytics": "Análise",
+    "analyticsDesc": "Dados de uso anônimos para melhorar o serviço",
+    "crashReporting": "Relatório de Falhas",
+    "crashReportingDesc": "Ajude-nos a corrigir bugs e melhorar a estabilidade",
+    "dataSecure": "Seus dados de bem-estar são seguros e criptografados.",
+    "about": "Sobre o NUL flow",
+    "aboutDesc": "criado por 1013th, publicado com a ajuda da DDSoft para toda a comunidade neurodivergente .."
+  },
+  "dataExport": {
+    "title": "Exportar Dados",
+    "description": "Exporte seu histórico de bem-estar para sessões de terapia ou revisão pessoal.",
+    "selectPeriod": "Selecionar Período",
+    "last7Days": "Últimos 7 Dias",
+    "last30Days": "Últimos 30 Dias",
+    "allTime": "Todo o Período",
+    "custom": "Personalizado",
+    "to": "para",
+    "additionalFilters": "Filtros Adicionais",
+    "sharedOnly": "Apenas Compartilhados",
+    "filterByMood": "Filtrar por Humor",
+    "entriesFound": "{{count}} entradas encontradas",
+    "noEntries": "Nenhuma entrada no período selecionado.",
+    "exportCSV": "Exportar como CSV"
+  },
+  "wizard": {
+    "steps": {
+      "setLevels": "Calibrar Estado",
+      "addDetails": "Adicionar Contexto",
+      "shareSave": "Compartilhar e Registrar"
+    },
+    "setLevels": {
+      "title": "Defina Seus Níveis Atuais",
+      "description": "Arraste os visuais para cima ou para baixo para ajustar.",
+      "socialLoad": "Carga Social",
+      "energy": "Energia",
+      "levels": {
+        "low": "Baixo",
+        "moderate": "Moderado",
+        "high": "Alto",
+        "critical": "Crítico",
+        "good": "Bom"
+      }
+    },
+    "addDetails": {
+      "title": "Adicionar Contexto (Opcional)",
+      "description": "Adicione notas ou tags para lembrar como você se sentiu.",
+      "feeling": "Como você está se sentindo?",
+      "selectMoods": "Selecione os humores que se aplicam",
+      "addOwnMood": "Adicione seu próprio humor...",
+      "additionalNotes": "Notas adicionais",
+      "notesPlaceholder": "O que está em sua mente? O que aconteceu hoje?"
+    },
+    "shareSave": {
+      "title": "Compartilhar e Salvar",
+      "description": "Escolha com quem compartilhar, ou apenas salve para si mesmo.",
+      "shareWithContacts": "Compartilhar com Contatos",
+      "searchPlaceholder": "Pesquisar contatos...",
+      "addMoreContacts": "Adicionar Mais Contatos",
+      "sendToContacts": "Enviar para {{count}} Contato(s)",
+      "saveForMyself": "Salvar para mim"
+    },
+    "buttons": {
+      "next": "Próximo Passo",
+      "back": "Voltar"
+    }
+  },
+  "moods": {
+    "stressed": "estressado",
+    "overwhelmed": "sobrecarregado",
+    "calm": "calmo",
+    "energized": "energizado",
+    "tired": "cansado",
+    "anxious": "ansioso",
+    "peaceful": "pacífico",
+    "focused": "focado"
+  },
+  "crisisModal": {
+    "title": "Alerta de Bem-Estar",
+    "description1": "Nosso monitor de bem-estar de IA detectou um padrão preocupante em suas entradas recentes (por exemplo, carga mental alta sustentada e baixa energia).",
+    "description2": "Gostaria de notificar seus 3 principais contatos de suporte?",
+    "notifyButton": "Notificar Rede de Suporte",
+    "dismissButton": "Dispensar"
+  },
+  "languages": {
+    "select": "Selecionar Idioma"
+  },
+  "onboarding": {
+    "title": "Bem-vindo ao NUL flow",
+    "subtitle": "O primeiro passo para traduzir seu estado mental em uma linguagem universal.",
+    "bucketTitle": "O Balde",
+    "bucketDesc": "Representa sua carga mental e social. Um balde cheio significa que você está sobrecarregado.",
+    "batteryTitle": "A Bateria",
+    "batteryDesc": "Representa seu nível de energia. Uma bateria fraca significa que você está esgotado.",
+    "closeButton": "Começar"
+  },
+  "profileSetup": {
+    "title": "Quem é você?",
+    "subtitle": "Vamos configurar seu perfil para que seus amigos saibam quem está compartilhando seu flow.",
+    "nameLabel": "Seu Nome",
+    "namePlaceholder": "Maria Silva",
+    "emailLabel": "Endereço de E-mail",
+    "phoneLabel": "Número de Telefone",
+    "submitButton": "Criar Perfil",
+    "nextStep": "Próximo: Adicionar Contatos",
+    "contactsTitle": "Construa Seu Círculo",
+    "contactsSubtitle": "Importe contatos de confiança do seu dispositivo para compartilhar seu flow.",
+    "importDescription": "Podemos importar rapidamente nomes e números da sua agenda de contatos.",
+    "importButton": "Importar do Dispositivo",
+    "importNotSupported": "A importação de contatos não é suportada neste dispositivo/navegador.",
+    "manualEntryNote": "Este dispositivo não suporta importação automática. Você pode adicionar contatos manualmente mais tarde através da aba 'Círculo de Conexão'.",
+    "contactsSelected": "{{count}} contatos selecionados!",
+    "finishWithContacts": "Concluir e Salvar Contatos",
+    "skipContacts": "Pular por enquanto"
+  }
+};
