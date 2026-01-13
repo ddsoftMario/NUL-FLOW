@@ -1,7 +1,7 @@
 
 import React from 'react';
-import type { NulFlowEntry } from '../../types';
-import { ShareIcon } from '../icons';
+import type { NulFlowEntry, Page } from '../../types';
+import { ShareIcon, Cog6ToothIcon, ArrowLeftIcon } from '../icons';
 import { useTranslation } from '../../i18n';
 
 const LevelVisual: React.FC<{ level: number; type: 'bucket' | 'battery' }> = ({ level, type }) => {
@@ -80,33 +80,46 @@ const HistoryCard: React.FC<{ entry: NulFlowEntry }> = ({ entry }) => {
     );
 }
 
-const HistoryPage: React.FC<{ history: NulFlowEntry[] }> = ({ history }) => {
+const HistoryPage: React.FC<{ history: NulFlowEntry[], onNavigate: (page: Page) => void }> = ({ history, onNavigate }) => {
     const { t } = useTranslation();
     const avgBucket = history.length > 0 ? Math.round(history.reduce((acc, curr) => acc + curr.bucketLevel, 0) / history.length) : 0;
     const avgBattery = history.length > 0 ? Math.round(history.reduce((acc, curr) => acc + curr.batteryLevel, 0) / history.length) : 0;
 
     return (
-        <div>
-            <div>
-                <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-slate-200 mb-2">{t('history.title')}</h1>
-                <p className="text-lg text-slate-500 dark:text-slate-400 mb-8">{t('history.description')}</p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div className="bg-blue-100/70 dark:bg-blue-900/50 backdrop-blur-sm text-blue-800 dark:text-blue-300 p-6 rounded-2xl shadow-sm">
-                        <p className="text-sm font-medium opacity-80 mb-1">{t('history.avgBucket')}</p>
-                        <p className="text-4xl sm:text-5xl font-bold">{avgBucket}%</p>
-                        <p className="text-sm opacity-80">{t('history.bucketAvgDesc')}</p>
-                    </div>
-                     <div className="bg-green-100/70 dark:bg-green-900/50 backdrop-blur-sm text-green-800 dark:text-green-300 p-6 rounded-2xl shadow-sm">
-                        <p className="text-sm font-medium opacity-80 mb-1">{t('history.avgBattery')}</p>
-                        <p className="text-4xl sm:text-5xl font-bold">{avgBattery}%</p>
-                        <p className="text-sm opacity-80">{t('history.batteryAvgDesc')}</p>
-                    </div>
-                    <div className="bg-purple-100/70 dark:bg-purple-900/50 backdrop-blur-sm text-purple-800 dark:text-purple-300 p-6 rounded-2xl shadow-sm">
-                        <p className="text-sm font-medium opacity-80 mb-1">{t('history.totalEntries')}</p>
-                        <p className="text-4xl sm:text-5xl font-bold">{history.length}</p>
-                        <p className="text-sm opacity-80">{t('history.totalEntriesDesc')}</p>
-                    </div>
+        <div className="relative">
+            <div className="flex justify-between items-start mb-6">
+                 <div>
+                    <button onClick={() => onNavigate('home')} className="flex items-center gap-2 text-sm text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200 mb-4">
+                        <ArrowLeftIcon className="w-4 h-4" />
+                        {t('wizard.buttons.back')}
+                    </button>
+                    <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-slate-200 mb-2">{t('history.title')}</h1>
+                    <p className="text-lg text-slate-500 dark:text-slate-400">{t('history.description')}</p>
+                </div>
+                <button 
+                    onClick={() => onNavigate('settings')}
+                    className="p-3 text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                    title={t('nav.settings')}
+                >
+                    <Cog6ToothIcon className="w-6 h-6" />
+                </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="bg-blue-100/70 dark:bg-blue-900/50 backdrop-blur-sm text-blue-800 dark:text-blue-300 p-6 rounded-2xl shadow-sm">
+                    <p className="text-sm font-medium opacity-80 mb-1">{t('history.avgBucket')}</p>
+                    <p className="text-4xl sm:text-5xl font-bold">{avgBucket}%</p>
+                    <p className="text-sm opacity-80">{t('history.bucketAvgDesc')}</p>
+                </div>
+                    <div className="bg-green-100/70 dark:bg-green-900/50 backdrop-blur-sm text-green-800 dark:text-green-300 p-6 rounded-2xl shadow-sm">
+                    <p className="text-sm font-medium opacity-80 mb-1">{t('history.avgBattery')}</p>
+                    <p className="text-4xl sm:text-5xl font-bold">{avgBattery}%</p>
+                    <p className="text-sm opacity-80">{t('history.batteryAvgDesc')}</p>
+                </div>
+                <div className="bg-purple-100/70 dark:bg-purple-900/50 backdrop-blur-sm text-purple-800 dark:text-purple-300 p-6 rounded-2xl shadow-sm">
+                    <p className="text-sm font-medium opacity-80 mb-1">{t('history.totalEntries')}</p>
+                    <p className="text-4xl sm:text-5xl font-bold">{history.length}</p>
+                    <p className="text-sm opacity-80">{t('history.totalEntriesDesc')}</p>
                 </div>
             </div>
 

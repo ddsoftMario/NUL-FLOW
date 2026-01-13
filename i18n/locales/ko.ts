@@ -8,11 +8,12 @@ export default {
     "dataExport": "데이터 내보내기",
     "settings": "설정",
     "installApp": "앱 설치",
-    "shareApp": "앱 공유"
+    "shareApp": "앱 공유",
+    "profile": "프로필"
   },
   "share": {
-    "text": "당신의 웰빙을 추적하는 멋진 앱, NUL flow를 확인해보세요.",
-    "messageTemplate": "나의 NUL Flow 업데이트:\n🪣 부하: {{bucket}}%\n🔋 에너지: {{battery}}%{{moods}}{{notes}}",
+    "text": "당신의 웰빙을 추적하는 멋진 앱, NUL flow를 확인해보세요: {{url}}",
+    "messageTemplate": "나의 NUL Flow 업데이트:\n🪣 부하: {{bucket}}%\n🔋 에너지: {{battery}}%{{moods}}{{notes}}\n\n(NUL flow에서 보냄: {{url}})",
     "emailSubject": "나의 NUL Flow 업데이트"
   },
   "home": {
@@ -29,7 +30,13 @@ export default {
   },
   "inbox": {
     "emptyTitle": "받은 편지함이 비어 있습니다",
-    "emptyDesc": "연락처가 NUL flow를 공유하면 여기에 표시됩니다."
+    "emptyDesc": "연락처가 NUL flow를 공유하면 여기에 표시됩니다.",
+    "preview": {
+      "title": "기능 미리보기",
+      "description": "가까운 NUL Flow 앱에서 곧 만나보실 수 있습니다 ;)."
+    },
+    "welcomeMessage": "NUL flow 받은 편지함에 오신 것을 환영합니다! 기능이 활성화되면 연결 서클의 업데이트가 여기에 표시됩니다.",
+    "fromNulFlowTeam": "NUL flow 팀"
   },
   "history": {
     "title": "연결 로그",
@@ -119,7 +126,16 @@ export default {
     "crashReportingDesc": "버그 수정 및 안정성 향상에 도움",
     "dataSecure": "당신의 웰빙 데이터는 안전하게 암호화됩니다.",
     "about": "NUL flow 정보",
-    "aboutDesc": "1013th에 의해 만들어졌으며, DDSoft의 도움으로 모든 신경다양성 커뮤니티를 위해 출판되었습니다 .."
+    "aboutDesc": "1013th에 의해 만들어졌으며, DDSoft VZW의 도움으로 모든 신경다양성 커뮤니티를 위해 출판되었습니다 ..",
+    "profile": "프로필",
+    "screenName": "화면 이름",
+    "screenNameDesc": "이 이름은 연락처에 표시됩니다",
+    "dataManagement": "데이터 관리",
+    "resetData": "앱 데이터 재설정",
+    "resetDataDesc": "기록과 연락처를 영구적으로 삭제합니다.",
+    "resetButton": "재설정",
+    "resetConfirmTitle": "앱 데이터를 재설정하시겠습니까?",
+    "resetConfirmMessage": "이렇게 하면 전체 연결 로그와 연락처 목록이 영구적으로 삭제됩니다. 이 작업은 되돌릴 수 없습니다."
   },
   "dataExport": {
     "title": "데이터 내보내기",
@@ -187,7 +203,8 @@ export default {
     "tired": "피곤함",
     "anxious": "불안함",
     "peaceful": "평화로움",
-    "focused": "집중함"
+    "focused": "집중함",
+    "daily-log": "일일-로그"
   },
   "crisisModal": {
     "title": "웰빙 알림",
@@ -195,6 +212,13 @@ export default {
     "description2": "상위 3명의 지원 연락처에게 알리시겠습니까?",
     "notifyButton": "지원 네트워크에 알림",
     "dismissButton": "닫기"
+  },
+  "dailyCheckin": {
+    "title": "매일 체크인",
+    "message": "안녕! 오늘 하루는 어땠나요? 당신의 하루를 기록해 보세요.",
+    "placeholder": "무엇이 당신을 자극했나요? 무엇이 당신을 행복하게, 활기차게, 혹은 공허하게 만들었나요?",
+    "save": "로그에 저장",
+    "notNow": "오늘은 안 함"
   },
   "languages": {
     "select": "언어 선택"
@@ -226,5 +250,11 @@ export default {
     "contactsSelected": "{{count}}개의 연락처가 선택되었습니다!",
     "finishWithContacts": "완료 및 연락처 저장",
     "skipContacts": "지금은 건너뛰기"
+  },
+   "installBanner": {
+    "prompt": "기기에서 전체 앱 경험을 즐기세요.",
+    "installButton": "설치",
+    "iosPrompt": "설치하려면 공유 아이콘을 탭하고 '홈 화면에 추가'를 선택하세요.",
+    "dismiss": "닫기"
   }
 };

@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'nul-flow-cache-v1';
+const CACHE_NAME = 'nul-flow-cache-v5';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -20,6 +20,11 @@ const urlsToCache = [
   '/i18n/locales/pt.ts',
   '/components/icons.tsx',
   '/components/EditContactModal.tsx',
+  '/components/InboxItemModal.tsx',
+  '/components/InstallPwaBanner.tsx',
+  '/components/LevelBar.tsx',
+  '/components/ProfileSetup.tsx',
+  '/components/WelcomeOverlay.tsx',
   '/components/pages/HomePage.tsx',
   '/components/pages/InboxPage.tsx',
   '/components/pages/HistoryPage.tsx',

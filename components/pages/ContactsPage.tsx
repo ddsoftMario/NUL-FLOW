@@ -1,7 +1,7 @@
 
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import type { Contact } from '../../types';
-import { PencilIcon, TrashIcon, PlusIcon } from '../icons';
+import { PencilIcon, TrashIcon, PlusIcon, DocumentArrowDownIcon } from '../icons';
 import { useTranslation } from '../../i18n';
 import EditContactModal from '../EditContactModal';
 
@@ -57,7 +57,7 @@ const ContactCard: React.FC<{ contact: Contact; onUpdate: (updatedContact: Conta
             </div>
             
             <div className="text-sm text-gray-500 dark:text-slate-400 mt-4">
-                {contact.email && <p>✉️ {contact.email}</p>}
+                {/* Email hidden for privacy */}
                 {contact.phone && <p>📞 {contact.phone}</p>}
             </div>
 
@@ -90,6 +90,7 @@ const ContactsPage: React.FC<{
     const [isCreatingGroup, setIsCreatingGroup] = useState(false);
     const [newGroupName, setNewGroupName] = useState('');
     const newGroupInputRef = useRef<HTMLInputElement>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         if (isCreatingGroup) {
@@ -139,6 +140,117 @@ const ContactsPage: React.FC<{
                 setNewGroupName('');
             }
         }
+    };
+    
+    const handleImportClick = async () => {
+        // Fix: Use type assertion for navigator.contacts as it's not in the standard TS navigator interface
+        const nav = navigator as any;
+        if ('contacts' in nav && nav.contacts) {
+            try {
+                const props = ['name', 'tel'];
+                const opts = { multiple: true };
+                const selected = await nav.contacts.select(props, opts);
+                
+                if (selected && selected.length > 0) {
+                     const newContacts: Contact[] = selected.map((c: any, index: number) => ({
+                         id: `imported_page_${Date.now()}_${index}`,
+                         name: c.name?.[0] || 'Unknown',
+                         phone: c.tel?.[0] || '',
+                         group: contactGroups[0] || 'Friend',
+                         permissions: {
+                            canRequestState: false,
+                            canSeeBucketLevel: false,
+                            canSeeBatteryLevel: false,
+                            canSeePrivateNotes: false,
+                         }
+                     }));
+                     setContacts(prev => [...prev, ...newContacts]);
+                }
+            } catch (ex) {
+                console.log("Contact picker cancelled or failed", ex);
+            }
+        } else {
+            fileInputRef.current?.click();
+        }
+    };
+
+    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const text = e.target?.result as string;
+          let newContacts: Contact[] = [];
+
+          try {
+              if (file.name.toLowerCase().endsWith('.csv')) {
+                newContacts = parseCSV(text);
+              } else if (file.name.toLowerCase().endsWith('.vcf') || file.name.toLowerCase().endsWith('.vcard')) {
+                newContacts = parseVCard(text);
+              } else {
+                alert("File type not supported. Please use .csv or .vcf");
+              }
+
+              if (newContacts.length > 0) {
+                  setContacts(prev => [...prev, ...newContacts]);
+                  alert(t('contacts.importSuccess', {count: newContacts.length}));
+              } else {
+                  alert("No valid contacts found in file.");
+              }
+          } catch (error) {
+              console.error("Parse error", error);
+              alert("Error parsing file.");
+          }
+          event.target.value = ''; // Reset
+        };
+        reader.readAsText(file);
+    };
+
+    const parseCSV = (text: string): Contact[] => {
+        const lines = text.split(/\r?\n/);
+        const contacts: Contact[] = [];
+        lines.forEach((line, index) => {
+            if (index === 0 && line.toLowerCase().includes('name')) return;
+            if (!line.trim()) return;
+            const parts = line.split(',').map(p => p.trim().replace(/^"|"$/g, ''));
+            if (parts.length < 2) return;
+            const name = parts[0];
+            let phone = '';
+            for (let i = 1; i < parts.length; i++) {
+                if (parts[i].match(/[\d+ \-\(\)]{7,}/)) phone = parts[i];
+            }
+            if (name) {
+                contacts.push({
+                    id: `csv_page_${Date.now()}_${index}`,
+                    name, phone,
+                    group: contactGroups[0] || 'Friend',
+                    permissions: { canRequestState: false, canSeeBucketLevel: false, canSeeBatteryLevel: false, canSeePrivateNotes: false }
+                });
+            }
+        });
+        return contacts;
+    };
+
+    const parseVCard = (text: string): Contact[] => {
+        const contacts: Contact[] = [];
+        const cards = text.split(/BEGIN:VCARD/i);
+        cards.forEach((card, index) => {
+            if (!card.trim()) return;
+            const nameMatch = card.match(/FN:(.*)/i) || card.match(/N:.*?;(.*)/i);
+            const telMatch = card.match(/TEL.*:(.*)/i);
+            const name = nameMatch ? nameMatch[1].trim() : '';
+            if (name) {
+                contacts.push({
+                    id: `vcf_page_${Date.now()}_${index}`,
+                    name: name,
+                    phone: telMatch ? telMatch[1].trim() : '',
+                    group: contactGroups[0] || 'Friend',
+                    permissions: { canRequestState: false, canSeeBucketLevel: false, canSeeBatteryLevel: false, canSeePrivateNotes: false }
+                });
+            }
+        });
+        return contacts;
     };
 
     const filteredContacts = useMemo(() => {
@@ -190,10 +302,23 @@ const ContactsPage: React.FC<{
                                 </button>
                             )}
 
-                         <button onClick={handleQuickAdd} className="flex-shrink-0 flex items-center justify-center gap-2 px-6 py-3 bg-purple-600 text-white font-semibold rounded-full shadow-md hover:bg-purple-700 transition-all transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30">
-                            <PlusIcon className="w-5 h-5"/>
-                            {t('contacts.quickAdd')}
-                        </button>
+                             {/* Import Button */}
+                             <button onClick={handleImportClick} className="flex-shrink-0 flex items-center justify-center gap-2 px-6 py-3 bg-blue-500 text-white font-semibold rounded-full shadow-md hover:bg-blue-600 transition-all transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30">
+                                <DocumentArrowDownIcon className="w-5 h-5"/>
+                                <span className="hidden sm:inline">{t('contacts.import')}</span>
+                            </button>
+                             <input 
+                                type="file" 
+                                ref={fileInputRef}
+                                className="hidden" 
+                                accept=".csv,.vcf,.vcard"
+                                onChange={handleFileUpload}
+                            />
+
+                            <button onClick={handleQuickAdd} className="flex-shrink-0 flex items-center justify-center gap-2 px-6 py-3 bg-purple-600 text-white font-semibold rounded-full shadow-md hover:bg-purple-700 transition-all transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30">
+                                <PlusIcon className="w-5 h-5"/>
+                                {t('contacts.quickAdd')}
+                            </button>
                         </div>
                     </div>
 

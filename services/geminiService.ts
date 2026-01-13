@@ -33,6 +33,7 @@ export const checkCrisisPattern = async (history: NulFlowEntry[]): Promise<boole
       return Promise.resolve(isCriticalLevels || (isModerateRisk && hasNegativeMoods));
   }
   
+  // Use named parameter to initialize GoogleGenAI
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   
   // Prepare data for the model. We explicitly include notes now for sentiment analysis.
@@ -70,8 +71,9 @@ export const checkCrisisPattern = async (history: NulFlowEntry[]): Promise<boole
   `;
 
   try {
+    // Correct usage of generateContent for Gemini 3 model with structured output
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3-flash-preview",
       contents: prompt,
       config: {
         responseMimeType: "application/json",
@@ -91,12 +93,15 @@ export const checkCrisisPattern = async (history: NulFlowEntry[]): Promise<boole
                     type: Type.STRING,
                     description: "A concise explanation of the detected pattern (e.g. 'Rapid energy drop combined with hopelessness in notes')."
                 }
-            }
+            },
+            required: ["riskLevel", "isCrisis", "reasoning"],
+            propertyOrdering: ["riskLevel", "isCrisis", "reasoning"]
         },
       }
     });
 
-    const jsonString = response.text;
+    // Access response.text directly as a property
+    const jsonString = response.text || "{}";
     const result = JSON.parse(jsonString);
     
     console.log(`Gemini Wellness Analysis [${result.riskLevel}]:`, result.reasoning);

@@ -1,3 +1,4 @@
+
 // Fix: Convert JSON object to a TypeScript module with a default export.
 export default {
   "nav": {
@@ -8,11 +9,12 @@ export default {
     "dataExport": "Gegevensexport",
     "settings": "Instellingen",
     "installApp": "Installeer App",
-    "shareApp": "Deel App"
+    "shareApp": "Deel App",
+    "profile": "Profiel"
   },
   "share": {
-    "text": "Bekijk NUL flow, een geweldige app om je welzijn bij te houden.",
-    "messageTemplate": "Mijn NUL Flow Update:\n🪣 Last: {{bucket}}%\n🔋 Energie: {{battery}}%{{moods}}{{notes}}",
+    "text": "Bekijk NUL flow, een geweldige app om je welzijn bij te houden: {{url}}",
+    "messageTemplate": "Mijn NUL Flow Update:\n🪣 Last: {{bucket}}%\n🔋 Energie: {{battery}}%{{moods}}{{notes}}\n\n(Verzonden via NUL flow: {{url}})",
     "emailSubject": "Mijn NUL Flow Update"
   },
   "home": {
@@ -25,11 +27,19 @@ export default {
     "startSharing": "Begin met delen",
     "getFlowCardTitle": "Ontvang NUL Flow",
     "getFlowCardDesc": "Vraag wellness-updates aan bij je contacten",
-    "requestUpdates": "Updates aanvragen"
+    "requestUpdates": "Updates aanvragen",
+    "noContactsWarning": "Je hebt nog geen connecties. Voeg contacten toe aan je Cirkel om te beginnen met delen.",
+    "addContactsButton": "Ga naar Connecties"
   },
   "inbox": {
     "emptyTitle": "Je inbox is leeg",
-    "emptyDesc": "Wanneer je contacten hun NUL-flow met je delen, verschijnt deze hier."
+    "emptyDesc": "Wanneer je contacten hun NUL-flow met je delen, verschijnt deze hier.",
+    "preview": {
+      "title": "Functievoorbeeld",
+      "description": "binnenkort beschikbaar in een NUL Flow-app bij jou in de buurt ;)."
+    },
+    "welcomeMessage": "Welkom bij je NUL flow inbox! Hier zie je updates van je Verbindingscirkel zodra de functie live is.",
+    "fromNulFlowTeam": "NUL flow Team"
   },
   "history": {
     "title": "Verbindingslog",
@@ -75,7 +85,9 @@ export default {
     "newContactName": "Nieuw contact",
     "enterGroupName": "Voer een naam in voor de nieuwe groep:",
     "groupNameExists": "Een groep met deze naam bestaat al.",
-    "groupCreatedNote": "Nieuwe groep aangemaakt! Je kunt deze nu toewijzen aan contacten in de bewerkingsmodus."
+    "groupCreatedNote": "Nieuwe groep aangemaakt! Je kunt deze nu toewijzen aan contacten in de bewerkingsmodus.",
+    "import": "Importeren",
+    "importSuccess": "{{count}} contacten succesvol geïmporteerd!"
   },
   "requestFlow": {
     "title": "NUL Flow aanvragen",
@@ -119,7 +131,18 @@ export default {
     "crashReportingDesc": "Help ons bugs op te lossen en de stabiliteit te verbeteren",
     "dataSecure": "Je wellness-gegevens zijn veilig en versleuteld.",
     "about": "Over NUL flow",
-    "aboutDesc": "gemaakt door 1013th, gepubliceerd met de hulp van DDSoft voor de hele Neurodivergente Gemeenschap daarbuiten .."
+    "aboutDesc": "gemaakt door 1013th, gepubliceerd met de hulp van DDSoft VZW voor de hele Neurodivergente Gemeenschap daarbuiten ..",
+    "profile": "Profiel",
+    "screenName": "Schermnaam",
+    "screenNameDesc": "Deze naam is zichtbaar voor je contacten",
+    "dataManagement": "Gegevensbeheer",
+    "resetData": "App-gegevens resetten",
+    "resetDataDesc": "Verwijder permanent je geschiedenis en contacten.",
+    "resetButton": "Resetten",
+    "resetConfirmTitle": "App-gegevens resetten?",
+    "resetConfirmMessage": "Dit verwijdert permanent je volledige verbindingslog en contactenlijst. Dit kan niet ongedaan worden gemaakt.",
+    "installTitle": "App-installatie",
+    "installButton": "Zet vast op homescreen van je telefoon"
   },
   "dataExport": {
     "title": "Gegevensexport",
@@ -172,12 +195,15 @@ export default {
       "searchPlaceholder": "Zoek contacten...",
       "addMoreContacts": "Meer contacten toevoegen",
       "sendToContacts": "Verzenden naar {{count}} contact(en)",
-      "saveForMyself": "Opslaan / Voltooien"
+      "saveForMyself": "Opslaan / Voltooien",
+      "noContacts": "Je hebt nog geen contacten om mee te delen.",
+      "addContactsButton": "Contacten Toevoegen"
     },
     "buttons": {
       "next": "Volgende stap",
       "back": "Terug"
-    }
+    },
+    "close": "Sluiten"
   },
   "moods": {
     "stressed": "gestrest",
@@ -187,7 +213,8 @@ export default {
     "tired": "moe",
     "anxious": "angstig",
     "peaceful": "vredig",
-    "focused": "gefocust"
+    "focused": "gefocust",
+    "daily-log": "dagelijks-logboek"
   },
   "crisisModal": {
     "title": "Wellness-waarschuwing",
@@ -195,6 +222,13 @@ export default {
     "description2": "Wil je je top 3 ondersteuningscontacten op de hoogte stellen?",
     "notifyButton": "Ondersteuningsnetwerk informeren",
     "dismissButton": "Negeren"
+  },
+  "dailyCheckin": {
+    "title": "Dagelijkse Check-in",
+    "message": "Hoi! Hoe was je dag? Neem even de tijd om je dag vast te leggen.",
+    "placeholder": "Wat heeft je getriggerd? Wat maakte je blij, energiek of voelde je je leeg?",
+    "save": "Opslaan in Logboek",
+    "notNow": "Niet vandaag"
   },
   "languages": {
     "select": "Selecteer taal"
@@ -222,9 +256,17 @@ export default {
     "importDescription": "We kunnen snel namen en nummers uit je adresboek importeren.",
     "importButton": "Importeren van apparaat",
     "importNotSupported": "Contacten importeren wordt niet ondersteund op dit apparaat/browser.",
-    "manualEntryNote": "Dit apparaat ondersteunt geen automatische import. Je kunt later handmatig contacten toevoegen via 'Verbindingscirkel'.",
+    "manualEntryNote": "Dit apparaat ondersteunt geen automatische import. Je kunt later handmatig contacten toevoegen via 'Verbindingscirkel', of hieronder een bestand importeren.",
+    "importFromFile": "Importeer CSV/vCard",
+    "importFileDescription": "Ondersteunt CSV (Naam,Email,Tel) of vCard-bestanden",
     "contactsSelected": "{{count}} contacten geselecteerd!",
     "finishWithContacts": "Voltooien & Opslaan",
     "skipContacts": "Nu overslaan"
+  },
+   "installBanner": {
+    "prompt": "Krijg de volledige app-ervaring op je apparaat.",
+    "installButton": "Installeren",
+    "iosPrompt": "Om te installeren, tik op het Deel-icoon en selecteer 'Voeg toe aan beginscherm'.",
+    "dismiss": "Negeren"
   }
 };

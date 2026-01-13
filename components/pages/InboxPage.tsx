@@ -3,34 +3,28 @@ import React from 'react';
 import type { Contact } from '../../types';
 import type { InboxItem } from '../../App'; // Import the type
 import { useTranslation } from '../../i18n';
+import LevelBar from '../LevelBar';
 
 interface InboxPageProps {
   inboxItems: InboxItem[];
   contacts: Contact[];
+  onSelectItem: (itemId: string) => void;
 }
 
-const LevelBar: React.FC<{ value: number; colorClass: string; label: string }> = ({ value, colorClass, label }) => (
-  <div className="flex-1">
-    <div className="flex justify-between text-xs mb-1">
-      <span className="font-medium text-slate-600 dark:text-slate-400">{label}</span>
-      <span className="font-bold text-slate-800 dark:text-slate-200">{value}%</span>
-    </div>
-    <div className="h-2 bg-gray-200 dark:bg-slate-700 rounded-full overflow-hidden">
-      <div className={`h-full rounded-full ${colorClass}`} style={{ width: `${value}%` }} />
-    </div>
-  </div>
-);
-
-const InboxItemCard: React.FC<{ item: InboxItem; sender?: Contact }> = ({ item, sender }) => {
+const InboxItemCard: React.FC<{ item: InboxItem; sender?: Contact, onSelect: (itemId: string) => void; }> = ({ item, sender, onSelect }) => {
     const { t, locale } = useTranslation();
-    const senderName = sender ? sender.name : "Unknown";
-    const senderInitial = senderName.charAt(0);
+    const isSystemMessage = item.senderId === 'nul_flow_team';
+    const senderName = isSystemMessage ? t('inbox.fromNulFlowTeam') : sender ? sender.name : "Unknown";
+    const senderInitial = isSystemMessage ? 'N' : senderName.charAt(0);
 
     return (
-        <div className="bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm border border-gray-100 dark:border-slate-700 mb-4 animate-fade-in-slow">
+        <button
+            onClick={() => onSelect(item.id)}
+            className="w-full text-left bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm border border-gray-100 dark:border-slate-700 mb-4 animate-fade-in-slow transition-all duration-200 hover:shadow-md hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+        >
             <div className="flex justify-between items-start mb-4">
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600 dark:text-blue-300 font-bold">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${isSystemMessage ? 'bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300' : 'bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-300'}`}>
                         {senderInitial}
                     </div>
                     <div>
@@ -41,7 +35,7 @@ const InboxItemCard: React.FC<{ item: InboxItem; sender?: Contact }> = ({ item, 
                     </div>
                 </div>
                 {!item.isRead && (
-                    <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                    <div className="w-2.5 h-2.5 rounded-full bg-blue-500" />
                 )}
             </div>
 
@@ -65,11 +59,11 @@ const InboxItemCard: React.FC<{ item: InboxItem; sender?: Contact }> = ({ item, 
                     "{item.notes}"
                 </div>
             )}
-        </div>
+        </button>
     );
 };
 
-const InboxPage: React.FC<InboxPageProps> = ({ inboxItems, contacts }) => {
+const InboxPage: React.FC<InboxPageProps> = ({ inboxItems, contacts, onSelectItem }) => {
     const { t } = useTranslation();
 
     const renderEmptyState = () => (
@@ -90,13 +84,19 @@ const InboxPage: React.FC<InboxPageProps> = ({ inboxItems, contacts }) => {
         <div className="max-w-2xl mx-auto">
             <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-slate-200 mb-6">{t('nav.inbox')}</h1>
             
+            <div className="bg-yellow-50 dark:bg-yellow-900/30 border-l-4 border-yellow-400 dark:border-yellow-500 p-4 mb-6 rounded-r-lg">
+                <h4 className="font-bold text-yellow-800 dark:text-yellow-300">{t('inbox.preview.title')}</h4>
+                <p className="text-sm text-yellow-700 dark:text-yellow-400">{t('inbox.preview.description')}</p>
+            </div>
+
             {inboxItems.length === 0 ? renderEmptyState() : (
                 <div className="space-y-4">
                     {inboxItems.map(item => (
                         <InboxItemCard 
                             key={item.id} 
                             item={item} 
-                            sender={contacts.find(c => c.id === item.senderId)} 
+                            sender={contacts.find(c => c.id === item.senderId)}
+                            onSelect={onSelectItem}
                         />
                     ))}
                 </div>

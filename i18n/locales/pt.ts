@@ -8,11 +8,12 @@ export default {
     "dataExport": "Exportar Dados",
     "settings": "Configurações",
     "installApp": "Instalar App",
-    "shareApp": "Compartilhar App"
+    "shareApp": "Compartilhar App",
+    "profile": "Perfil"
   },
   "share": {
-    "text": "Confira o NUL flow, um ótimo aplicativo para acompanhar seu bem-estar.",
-    "messageTemplate": "Minha atualização do NUL Flow:\n🪣 Carga: {{bucket}}%\n🔋 Energia: {{battery}}%{{moods}}{{notes}}",
+    "text": "Confira o NUL flow, um ótimo aplicativo para acompanhar seu bem-estar: {{url}}",
+    "messageTemplate": "Minha atualização do NUL Flow:\n🪣 Carga: {{bucket}}%\n🔋 Energia: {{battery}}%{{moods}}{{notes}}\n\n(Enviado via NUL flow: {{url}})",
     "emailSubject": "Minha atualização do NUL Flow"
   },
   "home": {
@@ -29,7 +30,13 @@ export default {
   },
   "inbox": {
     "emptyTitle": "Sua caixa de entrada está vazia",
-    "emptyDesc": "Quando seus contatos compartilharem o NUL flow deles com você, ele aparecerá aqui."
+    "emptyDesc": "Quando seus contatos compartilharem o NUL flow deles com você, ele aparecerá aqui.",
+    "preview": {
+      "title": "Pré-visualização do Recurso",
+      "description": "em breve em um aplicativo NUL Flow perto de você ;)."
+    },
+    "welcomeMessage": "Bem-vindo à sua caixa de entrada NUL flow! É aqui que você verá as atualizações do seu Círculo de Conexão assim que o recurso for lançado.",
+    "fromNulFlowTeam": "Equipe NUL flow"
   },
   "history": {
     "title": "Registro de Conexão",
@@ -119,7 +126,16 @@ export default {
     "crashReportingDesc": "Ajude-nos a corrigir bugs e melhorar a estabilidade",
     "dataSecure": "Seus dados de bem-estar são seguros e criptografados.",
     "about": "Sobre o NUL flow",
-    "aboutDesc": "criado por 1013th, publicado com a ajuda da DDSoft para toda a comunidade neurodivergente .."
+    "aboutDesc": "criado por 1013th, publicado com a ajuda da DDSoft VZW para toda a comunidade neurodivergente ..",
+    "profile": "Perfil",
+    "screenName": "Nome de Tela",
+    "screenNameDesc": "Este nome é visível para seus contatos",
+    "dataManagement": "Gerenciamento de Dados",
+    "resetData": "Redefinir Dados do Aplicativo",
+    "resetDataDesc": "Exclua permanentemente seu histórico e contatos.",
+    "resetButton": "Redefinir",
+    "resetConfirmTitle": "Redefinir dados do aplicativo?",
+    "resetConfirmMessage": "Isso excluirá permanentemente todo o seu registro de conexão e lista de contatos. Esta ação não pode ser desfeita."
   },
   "dataExport": {
     "title": "Exportar Dados",
@@ -187,7 +203,8 @@ export default {
     "tired": "cansado",
     "anxious": "ansioso",
     "peaceful": "pacífico",
-    "focused": "focado"
+    "focused": "focado",
+    "daily-log": "diário-de-bordo"
   },
   "crisisModal": {
     "title": "Alerta de Bem-Estar",
@@ -195,6 +212,13 @@ export default {
     "description2": "Gostaria de notificar seus 3 principais contatos de suporte?",
     "notifyButton": "Notificar Rede de Suporte",
     "dismissButton": "Dispensar"
+  },
+  "dailyCheckin": {
+    "title": "Check-in Diário",
+    "message": "Ei! Como foi seu dia? Tire um momento para escrever sobre o seu dia.",
+    "placeholder": "O que te irritou? O que te fez feliz, energizado ou se sentindo vazio?",
+    "save": "Salvar no Registro",
+    "notNow": "Hoje Não"
   },
   "languages": {
     "select": "Selecionar Idioma"
@@ -226,5 +250,11 @@ export default {
     "contactsSelected": "{{count}} contatos selecionados!",
     "finishWithContacts": "Concluir e Salvar Contatos",
     "skipContacts": "Pular por enquanto"
+  },
+   "installBanner": {
+    "prompt": "Obtenha a experiência completa do aplicativo no seu dispositivo.",
+    "installButton": "Instalar",
+    "iosPrompt": "Para instalar, toque no ícone Partilhar e selecione 'Adicionar à Tela de Início'.",
+    "dismiss": "Dispensar"
   }
 };

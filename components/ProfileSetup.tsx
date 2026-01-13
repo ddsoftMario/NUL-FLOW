@@ -1,20 +1,11 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTranslation } from '../i18n';
 import type { UserProfile, Contact } from '../types';
-import { ArrowRightIcon, UsersIcon } from './icons';
+import { ArrowRightIcon, UsersIcon, DocumentArrowDownIcon } from './icons';
 
 interface ProfileSetupProps {
   onComplete: (profile: UserProfile, contacts: Contact[]) => void;
-}
-
-// Helper to access the native contacts API
-declare global {
-  interface Navigator {
-    contacts?: {
-      select: (properties: string[], options?: { multiple: boolean }) => Promise<any[]>;
-    };
-  }
 }
 
 const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
@@ -25,7 +16,8 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
     email: '',
     phone: '',
   });
-  const [importedContacts, setImportedContacts] = useState<Contact[]>([]);
+  const [selectedContacts, setSelectedContacts] = useState<Contact[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -33,68 +25,77 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
 
   const handleInfoSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.name && formData.email && formData.phone) {
+    if (formData.name && formData.email) {
       setStep(2);
     }
   };
 
   const handleImportContacts = async () => {
-    if ('contacts' in navigator && navigator.contacts) {
+    const nav = navigator as any;
+    if ('contacts' in nav && nav.contacts) {
       try {
         const props = ['name', 'email', 'tel'];
         const opts = { multiple: true };
-        
-        const contacts = await navigator.contacts.select(props, opts);
-        
+        const contacts = await nav.contacts.select(props, opts);
         if (contacts && contacts.length > 0) {
-           const formattedContacts: Contact[] = contacts.map((c: any, index: number) => ({
-             id: `imported_${Date.now()}_${index}`,
-             name: c.name?.[0] || 'Unknown',
-             email: c.email?.[0] || '',
-             phone: c.tel?.[0] || '',
-             group: 'Friend', // Default group
-             permissions: {
-                canRequestState: false,
-                canSeeBucketLevel: false,
-                canSeeBatteryLevel: false,
-                canSeePrivateNotes: false,
-             }
-           }));
-           
-           setImportedContacts(prev => [...prev, ...formattedContacts]);
+            const mapped: Contact[] = contacts.map((c: any, i: number) => ({
+                id: `contact_setup_${Date.now()}_${i}`,
+                name: c.name?.[0] || 'Unknown',
+                email: c.email?.[0] || '',
+                phone: c.tel?.[0] || '',
+                group: 'Friend',
+                permissions: {
+                    canRequestState: false,
+                    canSeeBucketLevel: false,
+                    canSeeBatteryLevel: false,
+                    canSeePrivateNotes: false,
+                }
+            }));
+            setSelectedContacts(mapped);
         }
-      } catch (ex) {
-        console.error("Contacts import failed or was cancelled", ex);
-        // Fallback or just ignore if user cancelled
+      } catch (err) {
+        console.error("Contact selection failed", err);
       }
     } else {
-      alert(t('profileSetup.importNotSupported'));
+      fileInputRef.current?.click();
     }
   };
 
-  const finishSetup = () => {
-      const newProfile: UserProfile = {
-        id: `user_${Date.now()}`,
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+          // Simple mock CSV parse logic for local setup
+          const dummyContact: Contact = {
+              id: `file_contact_${Date.now()}`,
+              name: 'Imported Contact',
+              group: 'Friend',
+              permissions: { canRequestState: false, canSeeBucketLevel: false, canSeeBatteryLevel: false, canSeePrivateNotes: false }
+          };
+          setSelectedContacts(prev => [...prev, dummyContact]);
       };
-      onComplete(newProfile, importedContacts);
+      reader.readAsText(file);
   };
 
-  const isContactsApiSupported = 'contacts' in navigator && navigator.contacts;
+  const finishSetup = () => {
+    const profile: UserProfile = {
+      id: `user_${Date.now()}`,
+      ...formData,
+      screenName: formData.name,
+    };
+    onComplete(profile, selectedContacts);
+  };
 
   return (
     <div className="fixed inset-0 z-[200] bg-slate-50 dark:bg-slate-900 flex flex-col items-center justify-center p-6 animate-fade-in">
-       {/* Background decoration */}
        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-400/20 rounded-full blur-[100px]" />
           <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-400/20 rounded-full blur-[100px]" />
       </div>
 
-      <div className="relative w-full max-w-md bg-white/70 dark:bg-slate-800/70 backdrop-blur-2xl border border-white/20 dark:border-slate-700 rounded-3xl shadow-2xl p-8">
+      <div className="relative w-full max-w-md bg-white/70 dark:bg-slate-800/70 backdrop-blur-2xl border border-white/20 dark:border-slate-700 rounded-3xl shadow-2xl p-8 max-h-[90vh] overflow-y-auto">
         
-        {/* Progress Dots */}
         <div className="flex justify-center mb-6 space-x-2">
             <div className={`w-2.5 h-2.5 rounded-full transition-colors ${step >= 1 ? 'bg-purple-600' : 'bg-gray-300 dark:bg-slate-600'}`} />
             <div className={`w-2.5 h-2.5 rounded-full transition-colors ${step >= 2 ? 'bg-purple-600' : 'bg-gray-300 dark:bg-slate-600'}`} />
@@ -154,7 +155,6 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+1 234 567 890"
-                    required
                     className="w-full px-4 py-3 bg-white dark:bg-slate-900/50 border border-slate-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all dark:text-white"
                     />
                 </div>
@@ -183,40 +183,53 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
                 </div>
 
                 <div className="space-y-6">
-                    {isContactsApiSupported ? (
-                        <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-200 dark:border-blue-800 text-center">
-                            <p className="text-sm text-blue-700 dark:text-blue-300 mb-4">
-                                {t('profileSetup.importDescription')}
-                            </p>
-                            <button 
-                                onClick={handleImportContacts}
-                                className="w-full py-3 bg-blue-600 text-white font-bold rounded-lg shadow hover:bg-blue-700 transition-all"
+                    <div className="bg-gray-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-gray-200 dark:border-slate-700">
+                        <p className="text-sm text-slate-600 dark:text-slate-300 mb-6">{t('profileSetup.importDescription')}</p>
+                        
+                        <button 
+                            onClick={handleImportContacts}
+                            className="w-full flex items-center justify-center gap-2 py-3 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl font-bold text-slate-700 dark:text-slate-200 hover:border-purple-500 transition-all shadow-sm mb-4"
+                        >
+                            <UsersIcon className="w-5 h-5 text-purple-600" />
+                            {t('profileSetup.importButton')}
+                        </button>
+                        
+                        <div className="relative">
+                            <input 
+                                type="file" 
+                                ref={fileInputRef} 
+                                onChange={handleFileUpload} 
+                                accept=".csv,.vcf" 
+                                className="hidden" 
+                            />
+                             <button 
+                                onClick={() => fileInputRef.current?.click()}
+                                className="w-full flex items-center justify-center gap-2 py-2 text-sm text-slate-500 hover:text-purple-600 transition-colors"
                             >
-                                {t('profileSetup.importButton')}
+                                <DocumentArrowDownIcon className="w-4 h-4" />
+                                {t('profileSetup.importFromFile')}
                             </button>
                         </div>
-                    ) : (
-                         <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-xl border border-orange-200 dark:border-orange-800 text-center">
-                            <p className="text-sm text-orange-700 dark:text-orange-300">
-                                {t('profileSetup.manualEntryNote')}
-                            </p>
-                        </div>
-                    )}
+                    </div>
 
-                    {importedContacts.length > 0 && (
-                        <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg border border-green-200 dark:border-green-800 text-center">
-                            <p className="text-sm font-semibold text-green-700 dark:text-green-300">
-                                {t('profileSetup.contactsSelected', { count: importedContacts.length })}
-                            </p>
+                    {selectedContacts.length > 0 && (
+                        <div className="text-center p-3 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-semibold rounded-xl border border-green-100 dark:border-green-800 animate-bounce">
+                           ✨ {t('profileSetup.contactsSelected', {count: selectedContacts.length})}
                         </div>
                     )}
 
                     <div className="pt-4 flex flex-col gap-3">
                         <button
-                        onClick={finishSetup}
-                        className="group w-full flex items-center justify-center gap-2 py-4 bg-slate-900 dark:bg-purple-600 text-white font-bold rounded-xl shadow-lg hover:bg-slate-800 dark:hover:bg-purple-700 transition-all transform hover:scale-[1.02]"
+                          onClick={finishSetup}
+                          className="group w-full flex items-center justify-center gap-2 py-4 bg-slate-900 dark:bg-purple-600 text-white font-bold rounded-xl shadow-lg hover:bg-slate-800 dark:hover:bg-purple-700 transition-all transform hover:scale-[1.02]"
                         >
-                        {importedContacts.length > 0 ? t('profileSetup.finishWithContacts') : t('profileSetup.skipContacts')}
+                          {t('profileSetup.finishWithContacts')}
+                        </button>
+                        <button
+                            onClick={finishSetup}
+                            className="w-full py-3 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors text-sm font-semibold"
+                        >
+                            {t('profileSetup.skipContacts')}
                         </button>
                     </div>
                 </div>

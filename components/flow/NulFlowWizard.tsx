@@ -1,18 +1,20 @@
 
 import React, { useState } from 'react';
-import type { Contact, NulFlowEntry } from '../../types';
+import type { Contact, NulFlowEntry, Page } from '../../types';
 import SetLevelsStep from './SetLevelsStep';
 import AddDetailsStep from './AddDetailsStep';
 import ShareSaveStep from './ShareSaveStep';
 import { useTranslation } from '../../i18n';
+import { XMarkIcon } from '../icons';
 
 interface NulFlowWizardProps {
   onClose: () => void;
   onSave: (entry: Omit<NulFlowEntry, 'id' | 'timestamp'>) => void;
   contacts: Contact[];
+  onNavigate: (page: Page) => void;
 }
 
-const NulFlowWizard: React.FC<NulFlowWizardProps> = ({ onClose, onSave, contacts }) => {
+const NulFlowWizard: React.FC<NulFlowWizardProps> = ({ onClose, onSave, contacts, onNavigate }) => {
   const { t } = useTranslation();
   const [step, setStep] = useState(1);
   const [flowData, setFlowData] = useState<Omit<NulFlowEntry, 'id' | 'timestamp'>>({
@@ -38,7 +40,7 @@ const NulFlowWizard: React.FC<NulFlowWizardProps> = ({ onClose, onSave, contacts
   
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50 p-4 animate-fade-in">
-      <div className="bg-gray-50 dark:bg-slate-800 rounded-3xl w-full max-w-md mx-auto flex flex-col max-h-[90vh]">
+      <div className="bg-gray-50 dark:bg-slate-800 rounded-3xl w-full max-w-md mx-auto flex flex-col max-h-[90vh] relative">
         <div className="p-6 border-b border-gray-200 dark:border-slate-700">
           {/* Stepper */}
           <div className="flex items-center justify-between px-2 sm:px-4">
@@ -63,10 +65,14 @@ const NulFlowWizard: React.FC<NulFlowWizardProps> = ({ onClose, onSave, contacts
         <div className="flex-grow overflow-y-auto p-2">
             {step === 1 && <SetLevelsStep data={flowData} onUpdate={updateData} onNext={nextStep} />}
             {step === 2 && <AddDetailsStep data={flowData} onUpdate={updateData} onNext={nextStep} onBack={prevStep} />}
-            {step === 3 && <ShareSaveStep data={flowData} onUpdate={updateData} onSave={onSave} onBack={prevStep} contacts={contacts} />}
+            {step === 3 && <ShareSaveStep data={flowData} onUpdate={updateData} onSave={onSave} onBack={prevStep} contacts={contacts} onNavigate={onNavigate} onClose={onClose} />}
         </div>
-         <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-300">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+         <button 
+            onClick={onClose} 
+            className="absolute top-4 right-4 p-2 rounded-full bg-gray-200/80 dark:bg-slate-900/80 text-gray-700 dark:text-slate-300 hover:bg-gray-300/80 dark:hover:bg-slate-700/80 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800"
+            aria-label={t('wizard.close')}
+         >
+            <XMarkIcon className="h-6 w-6" />
         </button>
       </div>
     </div>

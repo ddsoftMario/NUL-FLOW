@@ -1,6 +1,6 @@
 
 import React, { useState, useMemo } from 'react';
-import type { NulFlowEntry, Contact } from '../../types';
+import type { NulFlowEntry, Contact, Page } from '../../types';
 import { ArrowLeftIcon, PlusIcon, PaperAirplaneIcon, ShareIcon } from '../icons';
 import { useTranslation } from '../../i18n';
 
@@ -10,9 +10,11 @@ interface ShareSaveStepProps {
   onSave: (entry: Omit<NulFlowEntry, 'id' | 'timestamp'>) => void;
   onBack: () => void;
   contacts: Contact[];
+  onNavigate: (page: Page) => void;
+  onClose: () => void;
 }
 
-const ShareSaveStep: React.FC<ShareSaveStepProps> = ({ data, onUpdate, onSave, onBack, contacts }) => {
+const ShareSaveStep: React.FC<ShareSaveStepProps> = ({ data, onUpdate, onSave, onBack, contacts, onNavigate, onClose }) => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -28,27 +30,27 @@ const ShareSaveStep: React.FC<ShareSaveStepProps> = ({ data, onUpdate, onSave, o
   const getShareText = () => {
     // Translate moods for the message
     const translatedMoods = data.moods.map(m => t(`moods.${m}`, { defaultValue: m })).join(', ');
+    const url = window.location.href && window.location.href.startsWith('http') ? window.location.href : 'https://nul-flow.web.app';
     
     // Construct the message using translations
     return t('share.messageTemplate', {
         bucket: data.bucketLevel,
         battery: data.batteryLevel,
-        moods: translatedMoods ? `\nMood: ${translatedMoods}` : '',
-        notes: data.notes ? `\nNote: ${data.notes}` : ''
+        moods: translatedMoods ? `\n${t('history.moodTags')} ${translatedMoods}` : '',
+        notes: data.notes ? `\n${t('history.note')} ${data.notes}` : '',
+        url: url
     });
   };
 
   const handleNativeShare = async () => {
     if (navigator.share) {
         try {
-            const shareData: any = {
+            const url = window.location.href && window.location.href.startsWith('http') ? window.location.href : 'https://nul-flow.web.app';
+            const shareData = {
                 title: 'My NUL Flow',
                 text: getShareText(),
+                url: url,
             };
-            // Ensure we don't pass 'about:srcdoc' or other invalid URLs that cause "Invalid URL" errors
-            if (window.location.href && window.location.href.startsWith('http')) {
-                shareData.url = window.location.href;
-            }
             
             await navigator.share(shareData);
         } catch (err) {
@@ -93,36 +95,54 @@ const ShareSaveStep: React.FC<ShareSaveStepProps> = ({ data, onUpdate, onSave, o
       }}>
         <h3 className="text-lg font-bold text-gray-800 dark:text-slate-200 mb-4 text-center">{t('wizard.shareSave.shareWithContacts')}</h3>
         
-        <div className="relative mb-4">
-            <input 
-                type="text" 
-                placeholder={t('wizard.shareSave.searchPlaceholder')}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border-2 border-teal-300 dark:border-teal-700 dark:bg-slate-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-            />
-            <svg className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-        </div>
-
-        <div className="max-h-40 overflow-y-auto space-y-3 pr-2">
-            {filteredContacts.map(contact => (
-                <label key={contact.id} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-teal-50 dark:hover:bg-teal-900/50 cursor-pointer">
+        {contacts.length > 0 ? (
+            <>
+                <div className="relative mb-4">
                     <input 
-                        type="checkbox"
-                        checked={selectedContacts.includes(contact.id)}
-                        onChange={() => handleToggleContact(contact.id)}
-                        className="h-5 w-5 rounded border-gray-300 text-teal-600 focus:ring-teal-500"
+                        type="text" 
+                        placeholder={t('wizard.shareSave.searchPlaceholder')}
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full pl-10 pr-4 py-2 border-2 border-teal-300 dark:border-teal-700 dark:bg-slate-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                     />
-                     <div className="w-8 h-8 rounded-full bg-purple-200 flex items-center justify-center text-purple-600 font-bold text-sm">
-                        {contact.name.charAt(0)}
-                    </div>
-                    <div>
-                        <p className="font-semibold text-gray-800 dark:text-slate-200">{contact.name}</p>
-                        <p className="text-xs text-gray-500 dark:text-slate-400">{contact.group}</p>
-                    </div>
-                </label>
-            ))}
-        </div>
+                    <svg className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                </div>
+
+                <div className="max-h-40 overflow-y-auto space-y-3 pr-2">
+                    {filteredContacts.map(contact => (
+                        <label key={contact.id} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-teal-50 dark:hover:bg-teal-900/50 cursor-pointer">
+                            <input 
+                                type="checkbox"
+                                checked={selectedContacts.includes(contact.id)}
+                                onChange={() => handleToggleContact(contact.id)}
+                                className="h-5 w-5 rounded border-gray-300 text-teal-600 focus:ring-teal-500"
+                            />
+                             <div className="w-8 h-8 rounded-full bg-purple-200 flex items-center justify-center text-purple-600 font-bold text-sm">
+                                {contact.name.charAt(0)}
+                            </div>
+                            <div>
+                                <p className="font-semibold text-gray-800 dark:text-slate-200">{contact.name}</p>
+                                <p className="text-xs text-gray-500 dark:text-slate-400">{contact.group}</p>
+                            </div>
+                        </label>
+                    ))}
+                </div>
+            </>
+        ) : (
+             <div className="text-center py-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg border border-yellow-200 dark:border-yellow-700">
+                <p className="text-sm text-yellow-800 dark:text-yellow-300 mb-4 px-2">{t('wizard.shareSave.noContacts')}</p>
+                <button
+                    onClick={() => {
+                        onClose();
+                        onNavigate('contacts');
+                    }}
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 transition-all"
+                >
+                    <PlusIcon className="w-5 h-5" />
+                    {t('wizard.shareSave.addContactsButton')}
+                </button>
+            </div>
+        )}
       </div>
 
       {/* Direct Actions Area */}

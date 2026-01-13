@@ -8,11 +8,12 @@ export default {
     "dataExport": "Dataeksport",
     "settings": "Indstillinger",
     "installApp": "Installer App",
-    "shareApp": "Del App"
+    "shareApp": "Del App",
+    "profile": "Profil"
   },
   "share": {
-    "text": "Tjek NUL flow, en fantastisk app til at spore dit velvære.",
-    "messageTemplate": "Min NUL Flow opdatering:\n🪣 Belastning: {{bucket}}%\n🔋 Energi: {{battery}}%{{moods}}{{notes}}",
+    "text": "Tjek NUL flow, en fantastisk app til at spore dit velvære: {{url}}",
+    "messageTemplate": "Min NUL Flow opdatering:\n🪣 Belastning: {{bucket}}%\n🔋 Energi: {{battery}}%{{moods}}{{notes}}\n\n(Sendt via NUL flow: {{url}})",
     "emailSubject": "Min NUL Flow Opdatering"
   },
   "home": {
@@ -29,7 +30,13 @@ export default {
   },
   "inbox": {
     "emptyTitle": "Din indbakke er tom",
-    "emptyDesc": "Når dine kontakter deler deres NUL flow med dig, vil det dukke op her."
+    "emptyDesc": "Når dine kontakter deler deres NUL flow med dig, vil det dukke op her.",
+    "preview": {
+      "title": "Funktionseksempel",
+      "description": "kommer snart til en NUL Flow-app nær dig ;)."
+    },
+    "welcomeMessage": "Velkommen til din NUL flow indbakke! Her vil du se opdateringer fra din Forbindelsescirkel, når funktionen er live.",
+    "fromNulFlowTeam": "NUL flow Team"
   },
   "history": {
     "title": "Forbindelseslog",
@@ -119,7 +126,16 @@ export default {
     "crashReportingDesc": "Hjælp os med at rette fejl og forbedre stabiliteten",
     "dataSecure": "Dine wellness-data er sikre og krypterede.",
     "about": "Om NUL flow",
-    "aboutDesc": "skabt af 1013th, udgivet med hjælp fra DDSoft for hele det neurodivergente samfund derude .."
+    "aboutDesc": "skabt af 1013th, udgivet med hjælp fra DDSoft VZW for hele det neurodivergente samfund derude ..",
+    "profile": "Profil",
+    "screenName": "Skærmnavn",
+    "screenNameDesc": "Dette navn er synligt for dine kontakter",
+    "dataManagement": "Datahåndtering",
+    "resetData": "Nulstil App Data",
+    "resetDataDesc": "Slet permanent din historik og kontakter.",
+    "resetButton": "Nulstil",
+    "resetConfirmTitle": "Nulstil App Data?",
+    "resetConfirmMessage": "Dette vil permanent slette hele din forbindelseslog og kontaktliste. Dette kan ikke fortrydes."
   },
   "dataExport": {
     "title": "Dataeksport",
@@ -187,7 +203,8 @@ export default {
     "tired": "træt",
     "anxious": "ængstelig",
     "peaceful": "fredfyldt",
-    "focused": "fokuseret"
+    "focused": "fokuseret",
+    "daily-log": "dagbog"
   },
   "crisisModal": {
     "title": "Wellness-advarsel",
@@ -195,6 +212,13 @@ export default {
     "description2": "Vil du give dine top 3 supportkontakter besked?",
     "notifyButton": "Giv supportnetværk besked",
     "dismissButton": "Afvis"
+  },
+  "dailyCheckin": {
+    "title": "Dagligt tjek-ind",
+    "message": "Hej! Hvordan var din dag? Brug et øjeblik på at skrive om din dag.",
+    "placeholder": "Hvad udløste dig? Hvad gjorde dig glad, energisk eller fik dig til at føle dig tom?",
+    "save": "Gem i log",
+    "notNow": "Ikke i dag"
   },
   "languages": {
     "select": "Vælg sprog"
@@ -226,5 +250,11 @@ export default {
     "contactsSelected": "{{count}} kontakter valgt!",
     "finishWithContacts": "Afslut & Gem Kontakter",
     "skipContacts": "Spring over nu"
+  },
+   "installBanner": {
+    "prompt": "Få den fulde app-oplevelse på din enhed.",
+    "installButton": "Installer",
+    "iosPrompt": "For at installere, tryk på Del-ikonet og vælg 'Føj til hjemmeskærm'.",
+    "dismiss": "Afvis"
   }
 };

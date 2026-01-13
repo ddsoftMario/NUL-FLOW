@@ -4,7 +4,8 @@ export type Theme = 'light' | 'dark';
 
 export interface UserProfile {
   id: string;
-  name: string;
+  name: string; // Real name
+  screenName?: string; // Display name
   email: string;
   phone: string;
   avatarUrl?: string;
@@ -15,7 +16,7 @@ export interface Contact {
   name: string;
   email?: string;
   phone?: string;
-  group: string; // Now a flexible string to allow for custom groups
+  group: string; // Flexible string to allow for custom groups
   avatarUrl?: string;
   permissions: {
     canRequestState: boolean;

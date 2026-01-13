@@ -1,4 +1,4 @@
-// Fix: Convert JSON object to a TypeScript module with a default export.
+
 export default {
   "nav": {
     "home": "Home",
@@ -8,11 +8,30 @@ export default {
     "dataExport": "Data Export",
     "settings": "Settings",
     "installApp": "Install App",
-    "shareApp": "Share App"
+    "shareApp": "Share App",
+    "profile": "Profile"
+  },
+  "profileSetup": {
+    "title": "Who are you?",
+    "subtitle": "Set up your profile to start tracking and sharing your wellness flow locally.",
+    "nameLabel": "Your Name",
+    "namePlaceholder": "Jane Doe",
+    "emailLabel": "Email Address",
+    "phoneLabel": "Phone Number",
+    "submitButton": "Create Profile",
+    "nextStep": "Next: Add Contacts",
+    "contactsTitle": "Build Your Circle",
+    "contactsSubtitle": "Import trusted contacts from your device to share your flow with.",
+    "importDescription": "We can quickly import names and numbers from your address book.",
+    "importButton": "Import from Device",
+    "importFromFile": "Import from File",
+    "finishWithContacts": "Finish & Save",
+    "skipContacts": "Skip for Now",
+    "contactsSelected": "{{count}} contacts ready!"
   },
   "share": {
-    "text": "Check out NUL flow, a great app for tracking your wellness.",
-    "messageTemplate": "My NUL Flow Update:\n🪣 Load: {{bucket}}%\n🔋 Energy: {{battery}}%{{moods}}{{notes}}",
+    "text": "Check out NUL flow, a great app for tracking your wellness: {{url}}",
+    "messageTemplate": "My NUL Flow Update:\n🪣 Load: {{bucket}}%\n🔋 Energy: {{battery}}%{{moods}}{{notes}}\n\n(Shared from NUL flow: {{url}})",
     "emailSubject": "My NUL Flow Update"
   },
   "home": {
@@ -25,11 +44,19 @@ export default {
     "startSharing": "Start Sharing",
     "getFlowCardTitle": "Get NUL Flow",
     "getFlowCardDesc": "Request wellness updates from your contacts",
-    "requestUpdates": "Request Updates"
+    "requestUpdates": "Request Updates",
+    "noContactsWarning": "You have no connections yet. Add contacts to your Circle to start sharing.",
+    "addContactsButton": "Go to Connections"
   },
   "inbox": {
     "emptyTitle": "Your inbox is empty",
-    "emptyDesc": "When your connections share their NUL flow with you, it will appear here."
+    "emptyDesc": "When your connections share their NUL flow with you, it will appear here.",
+    "preview": {
+      "title": "Feature Preview",
+      "description": "coming soon to a NUL Flow app near you ;)."
+    },
+    "welcomeMessage": "Welcome to your NUL flow inbox! This is where you'll see updates from your Connection Circle once the feature is live.",
+    "fromNulFlowTeam": "NUL flow Team"
   },
   "history": {
     "title": "Connection Log",
@@ -75,7 +102,9 @@ export default {
     "newContactName": "New Contact",
     "enterGroupName": "Enter a name for the new group:",
     "groupNameExists": "A group with this name already exists.",
-    "groupCreatedNote": "New group created! You can now assign it to contacts in edit mode."
+    "groupCreatedNote": "New group created! You can now assign it to contacts in edit mode.",
+    "import": "Import",
+    "importSuccess": "Successfully imported {{count}} contacts!"
   },
   "requestFlow": {
     "title": "Request NUL Flow",
@@ -92,7 +121,7 @@ export default {
   "contactGroups": {
     "Family": "Family",
     "Friend": "Friend",
-    "Therapist": "Therist",
+    "Therapist": "Therapist",
     "Partner": "Partner"
   },
   "settings": {
@@ -119,7 +148,19 @@ export default {
     "crashReportingDesc": "Help us fix bugs and improve stability",
     "dataSecure": "Your wellness data is secure and encrypted.",
     "about": "About NUL flow",
-    "aboutDesc": "created by 1013th, published with the help of DDSoft for the whole Neurodivergent Community out there .."
+    "aboutDesc": "created by 1013th, published with the help of DDSoft VZW for the whole Neurodivergent Community out there ..",
+    "profile": "Profile",
+    "screenName": "Screen Name",
+    "screenNameDesc": "This name is visible to your contacts",
+    "dataManagement": "Data Management",
+    "resetData": "Reset App Data",
+    "resetDataDesc": "Permanently delete your history and contacts.",
+    "resetButton": "Reset",
+    "resetConfirmTitle": "Reset App Data?",
+    "resetConfirmMessage": "This will permanently delete your entire connection log and contact list. This cannot be undone.",
+    "installTitle": "App Installation",
+    "installDesc": "Add NUL flow to your home screen for faster launch and a more “app-like” feel.",
+    "installButton": "Add to Home Screen"
   },
   "dataExport": {
     "title": "Data Export",
@@ -172,12 +213,15 @@ export default {
       "searchPlaceholder": "Search contacts...",
       "addMoreContacts": "Add More Contacts",
       "sendToContacts": "Send to {{count}} Contact(s)",
-      "saveForMyself": "Save / Finish"
+      "saveForMyself": "Save / Finish",
+      "noContacts": "You don't have any contacts yet.",
+      "addContactsButton": "Add Contacts"
     },
     "buttons": {
       "next": "Next Step",
       "back": "Back"
-    }
+    },
+    "close": "Close"
   },
   "moods": {
     "stressed": "stressed",
@@ -187,7 +231,8 @@ export default {
     "tired": "tired",
     "anxious": "anxious",
     "peaceful": "peaceful",
-    "focused": "focused"
+    "focused": "focused",
+    "daily-log": "daily-log"
   },
   "crisisModal": {
     "title": "Wellness Alert",
@@ -195,6 +240,13 @@ export default {
     "description2": "Would you like to notify your top 3 support contacts?",
     "notifyButton": "Notify Support Network",
     "dismissButton": "Dismiss"
+  },
+  "dailyCheckin": {
+    "title": "Daily Check-in",
+    "message": "Hey! How was your day? Take a moment to log your day.",
+    "placeholder": "What triggered you? What made you happy, energized, or feeling empty?",
+    "save": "Save to Log",
+    "notNow": "Not Today"
   },
   "languages": {
     "select": "Select Language"
@@ -208,23 +260,10 @@ export default {
     "batteryDesc": "Represents your energy level. A low battery means you're drained.",
     "closeButton": "Get Started"
   },
-  "profileSetup": {
-    "title": "Who are you?",
-    "subtitle": "Let's set up your profile so your friends know who is sharing their flow.",
-    "nameLabel": "Your Name",
-    "namePlaceholder": "Jane Doe",
-    "emailLabel": "Email Address",
-    "phoneLabel": "Phone Number",
-    "submitButton": "Create Profile",
-    "nextStep": "Next: Add Contacts",
-    "contactsTitle": "Build Your Circle",
-    "contactsSubtitle": "Import trusted contacts from your device to share your flow with.",
-    "importDescription": "We can quickly import names and numbers from your address book.",
-    "importButton": "Import from Device",
-    "importNotSupported": "Contact import is not supported on this device/browser.",
-    "manualEntryNote": "This device doesn't support automatic import. You can add contacts manually later via the 'Connection Circle' tab.",
-    "contactsSelected": "{{count}} contacts selected!",
-    "finishWithContacts": "Finish & Save Contacts",
-    "skipContacts": "Skip for Now"
+  "installBanner": {
+    "prompt": "Get the full app experience on your device.",
+    "installButton": "Install",
+    "iosPrompt": "To install, tap the Share icon and select 'Add to Home Screen'.",
+    "dismiss": "Dismiss"
   }
 };
